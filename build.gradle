@@ -20,9 +20,17 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-thymeleaf
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:3.3.3'
+	// https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa
+	implementation 'org.springframework.data:spring-data-jpa:3.3.3'
+	// https://mvnrepository.com/artifact/org.hibernate/hibernate-gradle-plugin
+	implementation 'org.hibernate:hibernate-gradle-plugin:6.0.0.Alpha6'
+
 }
 
 tasks.named('test') {
