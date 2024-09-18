@@ -30,6 +30,8 @@ dependencies {
 	implementation 'org.springframework.data:spring-data-jpa:3.3.3'
 	// https://mvnrepository.com/artifact/org.hibernate/hibernate-gradle-plugin
 	implementation 'org.hibernate:hibernate-gradle-plugin:6.0.0.Alpha6'
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-validation
+	implementation 'org.springframework.boot:spring-boot-starter-validation:3.3.3'
 
 }
 
