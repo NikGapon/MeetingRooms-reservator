@@ -7,8 +7,8 @@ import jakarta.validation.constraints.Size;
 
 
 @Entity
-@Table(name = "meetingrooms")
-public class MeetingRooms {
+@Table(name = "meetingroom")
+public class MeetingRoom {
     @Id
     @GeneratedValue
     private Long id;
@@ -21,14 +21,14 @@ public class MeetingRooms {
     @Size(min = 0, max = 516)
     private String description;
 
-    public MeetingRooms(){
+    public MeetingRoom(){
     }
 
-    public MeetingRooms(String name){
+    public MeetingRoom(String name){
         this.name = name;
     }
 
-    public MeetingRooms(String name, String description){
+    public MeetingRoom(String name, String description){
         this(name);
         this.description = description;
     }
