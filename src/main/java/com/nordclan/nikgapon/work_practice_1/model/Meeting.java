@@ -26,9 +26,6 @@ public class Meeting {
     @JoinColumn(name= "user_id", nullable = false)
     private List<User> guests;
 
-    //private LocalTime starttime;
-    //private LocalTime endtime;
-
     private Timestamp starttime;
     private Timestamp endtime;
 
