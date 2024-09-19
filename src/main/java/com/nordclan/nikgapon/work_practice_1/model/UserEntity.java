@@ -8,7 +8,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "user")
-public class User {
+public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -32,14 +32,14 @@ public class User {
 
 
 
-    public User() {
+    public UserEntity() {
     }
 
-    public User(String login, String password) {
+    public UserEntity(String login, String password) {
         this(login, password, UserRole.USER);
     }
 
-    public User(String login, String password, UserRole role) {
+    public UserEntity(String login, String password, UserRole role) {
         this.login = login;
         this.password = password;
         this.role = role;
@@ -49,7 +49,7 @@ public class User {
         return id;
     }
 
-    public String getLogin() {
+    public  String getLogin() {
         return login;
     }
 
@@ -81,7 +81,7 @@ public class User {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
+        UserEntity user = (UserEntity) o;
         return Objects.equals(id, user.id) && Objects.equals(login, user.login);
     }
 
@@ -91,7 +91,7 @@ public class User {
     }
     @Override
     public String toString() {
-        return "User{" +
+        return "UserEntity{" +
                 "id=" + id +
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +

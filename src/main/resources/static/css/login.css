@@ -106,15 +106,15 @@ input[type="text"]:focus, input[type="password"]:focus {
 input[type="text"] {
   background: transparent;
   border: 2px solid #22272d;
-  padding-left: 45px;
-  color: #e6b333;
+  padding-left: 5px;
+  color: black;
 }
 
 input[type="password"] {
   background: transparent;
   border: 2px solid #22272d;
-  padding-left: 45px;
-  color: #e6b333;
+  padding-left: 5px;
+  color: black;
 }
 
 input[type="submit"] {
@@ -139,7 +139,7 @@ input[type="radio"] {
   float: left;
   text-align: center;
   padding: 4px 0;
-  color: #e6b333;
+  color: black;
   font-size: 0.65em;
   position: relative;
 }

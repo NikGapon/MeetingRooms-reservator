@@ -14,17 +14,17 @@ public class Meeting {
     private Long id;
 
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", nullable = false)
-    private User creator;
+    private UserEntity creator;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "meetingroom_id")
     private MeetingRoom room;
 
     @ManyToMany
     @JoinColumn(name= "user_id", nullable = false)
-    private List<User> guests;
+    private List<UserEntity> guests;
 
     private Timestamp starttime;
     private Timestamp endtime;

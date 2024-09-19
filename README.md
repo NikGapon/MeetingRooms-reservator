@@ -18,5 +18,6 @@ The production practice of Nikolai Gapon. Implementation of a reservation system
 - [ ] Visibility on behalf of the guest
 - [ ] Checks for scheduled events
 - [ ] Sec itr frontend
+- [ ] BD Bake
 - [x] WiP
 # Wip

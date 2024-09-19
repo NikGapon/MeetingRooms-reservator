@@ -1,29 +1,46 @@
 package com.nordclan.nikgapon.work_practice_1.service;
 
-import org.springframework.context.annotation.Bean;
+import com.nordclan.nikgapon.work_practice_1.model.UserEntity;
+import com.nordclan.nikgapon.work_practice_1.model.UserRole;
+import com.nordclan.nikgapon.work_practice_1.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Collections;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
+    @Autowired
+    private UserRepository userRepository;
 
-    @Override
+    public UserEntity findByLogin(String login) {
+        return userRepository.findOneByLoginIgnoreCase(login);
+    }
+    /*@Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-        // todo из бд тут получать будем
+        // не будем ахахахахахахахаха
         if ("user".equals(login)) {
-            return User.withUsername("user")
+            return UserEntity.withUsername("user")
                     .password("password")
                     .roles("USER")
                     .build();
         } else {
-            throw new UsernameNotFoundException("User not found");
+            throw new UsernameNotFoundException("UserEntity not found");
         }
+
+    }*/
+
+    @Override
+    public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException{
+        final UserEntity userEntity = findByLogin(login);
+        if (userEntity == null) {
+            throw new UsernameNotFoundException(login);
+        }
+        return new User(
+                userEntity.getLogin(), userEntity.getPassword(), Collections.singleton(userEntity.getRole()));
     }
-
-
 }
