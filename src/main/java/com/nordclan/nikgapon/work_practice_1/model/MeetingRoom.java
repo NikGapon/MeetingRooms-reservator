@@ -8,7 +8,7 @@ import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "meetingroom")
-public class MeetingRoom {
+public class  MeetingRoom {
     @Id
     @GeneratedValue
     private Long id;

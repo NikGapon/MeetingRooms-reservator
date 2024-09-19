@@ -25,6 +25,13 @@ public class User {
 
     private UserRole role;
 
+    @Column(nullable = false)
+    @NotBlank
+    @Size(min = 5, max = 128)
+    private String FIO;
+
+
+
     public User() {
     }
 
@@ -60,6 +67,14 @@ public class User {
 
     public UserRole getRole() {
         return role;
+    }
+
+    public  String getFIO() {
+        return FIO;
+    }
+
+    public void setFIO(String FIO) {
+        this.FIO = FIO;
     }
 
     @Override
