@@ -23,7 +23,9 @@ public class Meeting {
     private MeetingRoom room;
 
     @ManyToMany
-    @JoinColumn(name= "user_id", nullable = false)
+    @JoinTable(name= "guest", joinColumns = { @JoinColumn(name = "user_id") },
+            inverseJoinColumns = { @JoinColumn(name = "meeting_id")})
+
     private List<UserEntity> guests;
 
     private Timestamp starttime;
