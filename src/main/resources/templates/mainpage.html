@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html  xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <title>Главная страница</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -9,8 +9,12 @@
 <div class="wrapper">
 <p th:text="|Привет, ${name}!|" />
     <a href="#" th:href="@{/}" class="button-5">Занять переговорку</button></a>
-    <a href="#" th:href="@{/}" class="button-5">Ваши планы</button></a>
+    <a href="#" th:href="@{/}" class="button-5">Ваши встречи</button></a>
     <a href="#" th:href="@{/logout}" class="button-5">Выйти</button></a>
+    <div sec:authorize="hasRole('ADMIN')" >
+        <h1>Зона админа</h1>
+    <a th:href="@{/admin/rooms}" class="button-5">Редактор комнат</a>
+    </div>
 </div>
 </body>
 </html>
