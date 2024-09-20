@@ -7,7 +7,8 @@ The production practice of Nikolai Gapon. Implementation of a reservation system
 - [x] AllModel  
 - [x] Mapping  
 - [x] password_hash
-- [ ] Test: login and session ___Before 21.09___
+- [x] Test: login and session ___Before 21.09___
+- [ ] Final connect css ___Before 21.09___
 - [ ] Final connect to db ___Before 21.09___
 - [ ] Important Controllers ___Before 21.09___
 - [ ] First itr for Booking ___Preferably on weekends___
