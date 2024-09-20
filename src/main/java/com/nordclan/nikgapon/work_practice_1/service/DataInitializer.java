@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class DataInitializer {
-
+    // calling the password decryptor at the start of the program
     @Autowired
     private PasswordEncryptionService passwordEncryptionService;
 

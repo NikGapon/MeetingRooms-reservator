@@ -11,6 +11,8 @@ import java.util.List;
 
 @Service
 public class PasswordEncryptionService {
+    // A small class reencrypts all passwords at the start of the password encryption program,
+    // if we enter them directly into BD
     @Autowired
     private UserRepository userRepository;
 
@@ -19,23 +21,22 @@ public class PasswordEncryptionService {
 
     @Transactional
     public void encryptAllPasswords() {
-        // Извлекаем всех пользователей
+
         List<UserEntity> users = userRepository.findAll();
 
         for (UserEntity user : users) {
-            // Проверяем, зашифрован ли пароль
+
             if (!isPasswordEncrypted(user.getPassword())) {
-                // Если не зашифрован, то шифруем
+
                 String encryptedPassword = passwordEncoder.encode(user.getPassword());
                 user.setPassword(encryptedPassword);
-                userRepository.save(user);  // Обновляем пользователя в базе данных
+                userRepository.save(user);
             }
         }
     }
 
-    // Метод для проверки, зашифрован ли пароль
     private boolean isPasswordEncrypted(String password) {
-        // Пароли, зашифрованные BCrypt, начинаются с "$2a$" или "$2b$"
+
         return password.startsWith("$2a$") || password.startsWith("$2b$");
     }
 }
