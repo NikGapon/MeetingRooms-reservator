@@ -23,9 +23,11 @@ public class SecurityConfig {
                         authorizeRequests
                                 .requestMatchers("/static/css/**").permitAll()
                                 .requestMatchers("/public/**").permitAll()
+                                .requestMatchers("/admin/**").hasRole("ADMIN")
                                 .anyRequest().authenticated()
 
                 )
+
                 .formLogin(form -> form
                         .loginPage("/login")
                         .failureUrl("/login?error=true")
