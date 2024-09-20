@@ -6,8 +6,33 @@
     <link rel="stylesheet" href="../static/css/main.css" type="text/css">
 </head>
 <body>
-<div class="wrapper">
+
     <h1>Тут должен быть CRUD комнат для админов  </h1>
-</div>
+    <a href="#" th:href="@{/}" class="button-5">Вернутся</button></a>
+    <div>
+        <table >
+            <thead>
+            <tr>
+                <th scope="col">Название</th>
+                <th scope="col">Описание</th>
+                <th scope="col">Редактировать комнату </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr >
+                <td  style="width: 25%"/>
+                <td  style="width: 25%"/>
+                <td><img  /></td>
+
+                    <form method="post">
+                        <button  type="submit" style="display: none">
+                            Удалить
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
