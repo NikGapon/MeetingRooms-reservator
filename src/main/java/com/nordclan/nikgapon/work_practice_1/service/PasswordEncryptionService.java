@@ -11,7 +11,7 @@ import java.util.List;
 
 @Service
 public class PasswordEncryptionService {
-    // A small class reencrypts all passwords at the start of the password encryption program,
+    // A small class reencrypts passwords at the start of the password encryption program,
     // if we enter them directly into BD
     @Autowired
     private UserRepository userRepository;

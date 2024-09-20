@@ -1,12 +1,16 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html  xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Главная страница</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="../static/css/main.css" type="text/css">
 </head>
 <body>
-Здарова
+<div class="wrapper">
 <p th:text="|Привет, ${name}!|" />
+    <a href="#" th:href="@{/}" class="button-5">Занять переговорку</button></a>
+    <a href="#" th:href="@{/}" class="button-5">Ваши планы</button></a>
+    <a href="#" th:href="@{/logout}" class="button-5">Выйти</button></a>
+</div>
 </body>
 </html>

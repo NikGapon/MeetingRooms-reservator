@@ -21,6 +21,7 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
+                                .requestMatchers("/static/css/**").permitAll()
                                 .requestMatchers("/public/**").permitAll()
                                 .anyRequest().authenticated()
 
@@ -31,7 +32,14 @@ public class SecurityConfig {
                         .defaultSuccessUrl("/", true)
                         .permitAll()
                 )
-                .logout(logout -> logout.permitAll());
+                //.logout(logout -> logout.permitAll());
+        .logout((logout) -> logout
+                //.logoutSuccessUrl("/")
+                .logoutUrl("/logout")
+                .deleteCookies("JSESSIONID")
+                .invalidateHttpSession(true)
+                .permitAll()
+        );
 
         return http.build();
     }
