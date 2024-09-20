@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -43,4 +44,16 @@ public class CustomUserDetailsService implements UserDetailsService {
         return new User(
                 userEntity.getLogin(), userEntity.getPassword(), Collections.singleton(userEntity.getRole()));
     }
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    public void registerNewUser(String login, String rawPassword, String role) {
+        UserEntity user = new UserEntity();
+        user.setLogin(login);
+        user.setPassword(passwordEncoder.encode(rawPassword));
+        user.setRole(role);
+        userRepository.save(user);
+    }
+
 }
