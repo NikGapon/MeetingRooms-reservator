@@ -4,11 +4,12 @@ import com.nordclan.nikgapon.work_practice_1.service.MeetingRoomService;
 import com.nordclan.nikgapon.work_practice_1.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.security.Principal;
+import java.io.IOException;
+
 
 @Controller
 @RequestMapping("/admin/rooms")
@@ -30,16 +31,43 @@ public class MeetingRoomController {
         return "rooms";
     }
     @GetMapping(value = {"/update", "/update/{id}"})
-    public String Update(){
+    public String Update(@PathVariable(required = false) Long id,
+                         Model model){
+        if (id == null || id <= 0) {
+            model.addAttribute("room", new MeetingRoomDto());
+        } else {
+
+            model.addAttribute("room", new MeetingRoomDto(meetingRoomService.findRoom(id)));
+        }
         return "update-room";
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteRoom(@PathVariable Long id, Principal principal) {
+    public String deleteRoom(@PathVariable Long id) {
         // Удалил админ чеки, spring security может сам убрать запросы
             meetingRoomService.deleteRoom(id);
 
         return "redirect:/admin/rooms";
     }
 
+    @PostMapping(value = {"/", "/{id}"})
+    public String saveRoom(@PathVariable(required = false) Long id,
+
+                           @ModelAttribute("room") MeetingRoomDto roomDto,
+                           BindingResult bindingResult,
+                           Model model) throws IOException {
+
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("errors",
+                    bindingResult.getAllErrors());
+            return "update-room";
+        }
+        if (id == null || id <= 0) {
+            meetingRoomService.addRoom(roomDto);
+            return "redirect:/admin/rooms";
+        } else {
+            meetingRoomService.updateRoom(id, roomDto);
+        }
+        return "redirect:/admin/rooms";
+    }
 }

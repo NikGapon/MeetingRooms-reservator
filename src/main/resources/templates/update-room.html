@@ -7,7 +7,30 @@
 </head>
 <body>
 <div class="wrapper">
+<!--  th:action="@{/admin/rooms/{id}(id=${id})}"-->
+  <form action="#" th:action="@{/admin/rooms/{id}(id=${id})}" th:object="${room}" method="post" enctype="multipart/form-data">
 
+      <label for="name" >Название</label>
+      <input type="text"  id="name" th:field="${room.name}" required="true">
+
+
+      <label for="description">Описание</label>
+      <input type="text"  id="description" th:field="${room.description}" required="true">
+
+
+      <button type="submit" >
+                <span th:if="${id == null}">
+                    <i></i> Добавить
+                </span>
+        <span th:if="${id != null}">
+                    <i  aria-hidden="true"></i> Сохранить
+                </span>
+      </button>
+      <a th:href="@{/admin/rooms}">
+        Назад
+      </a>
+
+  </form>
 </div>
 </body>
 </html>
