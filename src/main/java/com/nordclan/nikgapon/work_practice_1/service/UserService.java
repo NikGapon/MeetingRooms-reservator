@@ -1,7 +1,6 @@
 package com.nordclan.nikgapon.work_practice_1.service;
 
 import com.nordclan.nikgapon.work_practice_1.model.UserEntity;
-import com.nordclan.nikgapon.work_practice_1.model.UserRole;
 import com.nordclan.nikgapon.work_practice_1.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
@@ -14,7 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.Collections;
 
 @Service
-public class CustomUserDetailsService implements UserDetailsService {
+public class UserService implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
 

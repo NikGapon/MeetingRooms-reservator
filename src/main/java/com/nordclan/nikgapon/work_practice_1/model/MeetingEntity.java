@@ -9,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "meeting")
-public class Meeting {
+public class MeetingEntity {
     @Id
     @GeneratedValue
     private Long id;
@@ -26,7 +26,7 @@ public class Meeting {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "meetingroom_id")
-    private MeetingRoom room;
+    private MeetingRoomEntity room;
 
     @ManyToMany
     @JoinTable(name= "guest", joinColumns = { @JoinColumn(name = "user_id") },
@@ -72,7 +72,7 @@ public class Meeting {
     }
 
 
-    public Meeting(){
+    public MeetingEntity(){
 
     }
 
@@ -86,7 +86,7 @@ public class Meeting {
 
     @Override
     public String toString() {
-        return "Meeting{" +
+        return "MeetingEntity{" +
                 "id=" + id +
                 ", creator='" + creator + '\'' +
                 ", room='" + room + '\'' +

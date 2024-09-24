@@ -8,7 +8,7 @@ import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "meetingroom")
-public class  MeetingRoom {
+public class MeetingRoomEntity {
     @Id
     @GeneratedValue
     private Long id;
@@ -21,14 +21,14 @@ public class  MeetingRoom {
     @Size(min = 0, max = 516)
     private String description;
 
-    public MeetingRoom(){
+    public MeetingRoomEntity(){
     }
 
-    public MeetingRoom(String name){
+    public MeetingRoomEntity(String name){
         this.name = name;
     }
 
-    public MeetingRoom(String name, String description){
+    public MeetingRoomEntity(String name, String description){
         this(name);
         this.description = description;
     }
@@ -55,7 +55,7 @@ public class  MeetingRoom {
 
     @Override
     public String toString() {
-        return "MeetingRoom{" +
+        return "MeetingRoomEntity{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
