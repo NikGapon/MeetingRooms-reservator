@@ -9,6 +9,7 @@
 
     <h1>Тут должен быть CRUD комнат для админов  </h1>
     <a href="#" th:href="@{/}" class="button-5">Вернутся</button></a>
+    <a href="#" th:href="@{/admin/rooms/update}" class="button-5">Добавить</button></a>
     <div>
         <table >
             <thead>
@@ -19,16 +20,13 @@
             </tr>
             </thead>
             <tbody>
-            <tr >
-                <td  style="width: 25%"/>
-                <td  style="width: 25%"/>
-                <td><img  /></td>
+            <tr th:each="rooms, iterator: ${rooms}" >
+                <td th:text="${rooms.name}" style="width: 20%"/>
+                <td th:text="${rooms.description}" style="width: 25%">
+                <td style="padding-left: 150px">
 
-                    <form method="post">
-                        <button  type="submit" style="display: none">
-                            Удалить
-                        </button>
-                    </form>
+                    <a href="#" th:href="@{/admin/rooms/update}" class="button-5">Редактировать</button></a>
+                    <a href="#" th:href="@{/admin/rooms/update}" class="button-5">Удалить</button></a>
                 </td>
             </tr>
             </tbody>
