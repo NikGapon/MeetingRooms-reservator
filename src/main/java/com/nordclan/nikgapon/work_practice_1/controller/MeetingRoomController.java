@@ -36,9 +36,9 @@ public class MeetingRoomController {
 
     @GetMapping("/delete/{id}")
     public String deleteRoom(@PathVariable Long id, Principal principal) {
-        if (userService.AdminCheek(principal.getName())) {
+        // Удалил админ чеки, spring security может сам убрать запросы
             meetingRoomService.deleteRoom(id);
-        }
+
         return "redirect:/admin/rooms";
     }
 

@@ -31,14 +31,7 @@ public class UserService implements UserDetailsService {
                 userEntity.getLogin(), userEntity.getPassword(), Collections.singleton(userEntity.getRole()));
     }
 
-    public boolean AdminCheek(Long id){
-        // todo Написать проверку на Роль
-        return true;
-    }
-    public boolean AdminCheek(String login){
-        // todo И сюда тоже админ чек
-        return true;
-    }
+
 
     @Autowired
     private PasswordEncoder passwordEncoder;
