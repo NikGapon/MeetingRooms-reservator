@@ -1,13 +1,14 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
-  <title>Обновление комнаты</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <link rel="stylesheet" href="../static/css/main.css" type="text/css">
+    <title>Обновление комнаты</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="/static/css/main.css" type="text/css">
 </head>
 <body>
 <div class="wrapper">
 <!--  th:action="@{/admin/rooms/{id}(id=${id})}"-->
+    <h1>Переговорка</h1>
   <form action="#" th:action="@{/admin/rooms/{id}(id=${id})}" th:object="${room}" method="post" enctype="multipart/form-data">
 
       <label for="name" >Название</label>
@@ -18,7 +19,7 @@
       <input type="text"  id="description" th:field="${room.description}" required="true">
 
 
-      <button type="submit" >
+      <button class="button-5" type="submit" style="margin-top: 5px" >
                 <span th:if="${id == null}">
                     <i></i> Добавить
                 </span>
@@ -26,7 +27,8 @@
                     <i  aria-hidden="true"></i> Сохранить
                 </span>
       </button>
-      <a th:href="@{/admin/rooms}">
+      <br>
+      <a th:href="@{/admin/rooms}" class="button-5">
         Назад
       </a>
 

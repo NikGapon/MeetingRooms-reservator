@@ -30,7 +30,7 @@ public class MeetingRoomController {
                 .toList());
         return "rooms";
     }
-    @GetMapping(value = {"/update", "/update/{id}"})
+    @GetMapping(value = {"/room-update", "/room-update/{id}"})
     public String Update(@PathVariable(required = false) Long id,
                          Model model){
         if (id == null || id <= 0) {
@@ -39,7 +39,7 @@ public class MeetingRoomController {
 
             model.addAttribute("room", new MeetingRoomDto(meetingRoomService.findRoom(id)));
         }
-        return "update-room";
+        return "room-update";
     }
 
     @GetMapping("/delete/{id}")

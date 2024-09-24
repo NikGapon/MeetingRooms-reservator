@@ -9,7 +9,7 @@
 
     <h1>Создание, редактирование и удаление переговорок </h1>
     <a href="#" th:href="@{/}" class="button-5">Вернутся</button></a>
-    <a href="#" th:href="@{/admin/rooms/update}" class="button-5">Добавить</button></a>
+    <a href="#" th:href="@{/admin/rooms/room-update}" class="button-5">Добавить</button></a>
     <div>
         <table >
             <thead>
@@ -25,7 +25,7 @@
                 <td th:text="${rooms.description}" style="width: 25%">
                 <td style="padding-left: 150px">
 
-                    <a href="#" th:href="@{/admin/rooms/update/{id}(id=${rooms.id})}" class="button-5">Редактировать</button></a>
+                    <a href="#" th:href="@{/admin/rooms/room-update/{id}(id=${rooms.id})}" class="button-5">Редактировать</button></a>
                 <a href="#" th:href="@{/admin/rooms/delete/{id}(id=${rooms.id})}" class="button-5" th:attr="onclick=|return confirm('Удалить комнату?')|" >Удалить</button></a>
                 </td>
             </tr>
