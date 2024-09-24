@@ -1,6 +1,7 @@
 package com.nordclan.nikgapon.work_practice_1.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -13,6 +14,11 @@ public class Meeting {
     @GeneratedValue
     private Long id;
 
+    @Column(nullable = false, length = 64)
+    private String title;
+
+    @Size(min = 0, max = 516)
+    private String description;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", nullable = false)
@@ -33,6 +39,22 @@ public class Meeting {
 
     public Long getId() {
         return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Timestamp getStarttime(){
