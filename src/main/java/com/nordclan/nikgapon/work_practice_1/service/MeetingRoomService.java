@@ -38,8 +38,9 @@ public class MeetingRoomService {
     }
 
     @Transactional
-    public void addRoom(MeetingRoomDto dto){
-        "".isEmpty(); // do nothing
+    public MeetingRoomEntity addRoom(MeetingRoomDto dto){
+        final MeetingRoomEntity room = new MeetingRoomEntity(dto);
+        return meetingRoomRepository.save(room);
     }
 
     @Transactional
