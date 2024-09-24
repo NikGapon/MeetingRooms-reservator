@@ -20,19 +20,6 @@ public class UserService implements UserDetailsService {
     public UserEntity findByLogin(String login) {
         return userRepository.findOneByLoginIgnoreCase(login);
     }
-    /*@Override
-    public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-        // не будем ахахахахахахахаха
-        if ("user".equals(login)) {
-            return UserEntity.withUsername("user")
-                    .password("password")
-                    .roles("USER")
-                    .build();
-        } else {
-            throw new UsernameNotFoundException("UserEntity not found");
-        }
-
-    }*/
 
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException{
@@ -42,6 +29,15 @@ public class UserService implements UserDetailsService {
         }
         return new User(
                 userEntity.getLogin(), userEntity.getPassword(), Collections.singleton(userEntity.getRole()));
+    }
+
+    public boolean AdminCheek(Long id){
+        // todo Написать проверку на Роль
+        return true;
+    }
+    public boolean AdminCheek(String login){
+        // todo И сюда тоже админ чек
+        return true;
     }
 
     @Autowired

@@ -23,4 +23,9 @@ public class MeetingRoomService {
         return meetingRoomRepository.findAll();
     }
 
+    @Transactional
+    public void deleteRoom(Long id){
+        meetingRoomRepository.deleteById(id);
+
+    }
 }
