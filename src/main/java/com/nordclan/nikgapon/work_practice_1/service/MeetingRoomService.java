@@ -44,8 +44,11 @@ public class MeetingRoomService {
     }
 
     @Transactional
-    public void updateRoom(Long id, MeetingRoomDto dto){
-        "".isEmpty(); // do nothing
+    public MeetingRoomEntity updateRoom(Long id, MeetingRoomDto dto){
+        final MeetingRoomEntity room = findRoom(id);
+        room.setName(dto.getName());
+        room.setDescription(dto.getDescription());
+        return meetingRoomRepository.save(room);
     }
 }
 
