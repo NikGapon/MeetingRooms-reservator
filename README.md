@@ -10,14 +10,15 @@ The production practice of Nikolai Gapon. Implementation of a reservation system
 - [x] Test: login and session ___Before 21.09___
 - [x] Final connect css ___Before 21.09___
 - [x] Final connect to db ___Before 21.09___
-- [ ] CRUD for rooms, admin privileges ___Preferably on weekends___
-- [ ] Important Controllers ___Postponed___
+- [x] CRUD for rooms, admin privileges ___Preferably on weekends___
+- [x] Important Controllers ___Postponed___
 - [ ] First itr for Booking ___Postponed, first the implementation of the CRUD room and admin privileges___
 - [ ] First itr frontend (all rooms)
 - [ ] Final CRUD for Booking
 - [ ] Booking overlay errors
 - [ ] Visibility on behalf of the guest
 - [ ] Checks for scheduled events
+- [ ] All Validation cheek 
 - [ ] Sec itr frontend
 - [ ] BD Bake
 - [x] WiP
