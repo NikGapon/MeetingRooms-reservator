@@ -1,13 +1,35 @@
 <!DOCTYPE HTML>
 <html  xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Неделя</title>
+    <title th:text="${weekday.startend}"></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" href="../static/css/main.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/main.css" type="text/css">
 </head>
 <body>
+<h1 th:text="${weekday.startend}"></h1>
+<a href="#" th:href="@{/}" class="button-5">Вернутся</button></a>
+<div>
+    <table >
+        <thead>
+        <tr>
+            <th scope="col">Понедельник <br><span th:text="${weekday.Monday}"></span></th>
+            <th scope="col">Вторник <br><span th:text="${weekday.Tuesday}"></span></th>
+            <th scope="col">Среда <br><span th:text="${weekday.Wednesday}"></span></th>
+            <th scope="col">Четверг <br><span th:text="${weekday.Thursday}"></span></th>
+            <th scope="col">Пятница <br><span th:text="${weekday.Friday}"></span></th>
+            <th scope="col">Суббота <br><span th:text="${weekday.Saturday}"></span></th>
+            <th scope="col">Воскресенье <br><span th:text="${weekday.Sunday}"></span></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="rooms, iterator: ${rooms}" >
+            <td th:text="${rooms.name}" style="width: 20%"/>
+            <td th:text="${rooms.description}" style="width: 25%">
 
-1
+        </tr>
+        </tbody>
+    </table>
+</div>
 
 </body>
 </html>

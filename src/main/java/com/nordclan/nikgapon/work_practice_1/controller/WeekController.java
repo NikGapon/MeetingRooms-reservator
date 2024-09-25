@@ -28,8 +28,9 @@ public class WeekController {
         calendar.set(Calendar.DAY_OF_WEEK, calendar.getFirstDayOfWeek());
         Map<String, String> dateforCurentWeek = new HashMap<>();
         //DateTimeFormatter datefomr = DateTimeFormatter.ofPattern("dd-MM-yyyy", Locale.ENGLISH);
-        SimpleDateFormat datefomr = new SimpleDateFormat("dd-MM-yyyy");
-
+        SimpleDateFormat datefomr = new SimpleDateFormat("dd.MM.yyyy");
+        String startweek = datefomr.format(calendar.getTime());
+        String endweek;
         for (int i = 0; i < 7; i++) {
             String nameOfMonth = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, locale);
             String nameOfDay = calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, locale);
@@ -40,12 +41,17 @@ public class WeekController {
             //24: Tue Sep 24 14:25:50 GMT+04:00 2024
             // 5. increase day field; add() will adjust the month if neccessary
 
+
+
             System.out.println(nameOfDay +":" + datefomr.format(calendar.getTime()));
-            dateforCurentWeek.put("week", datefomr.format(calendar.getTime()));
+            dateforCurentWeek.put(nameOfDay, datefomr.format(calendar.getTime()));
             calendar.add(Calendar.DAY_OF_WEEK, 1);
 
         }
+        endweek = datefomr.format(calendar.getTime());
+        dateforCurentWeek.put("startend", "Неделя:" + startweek + "—" + endweek);
 
+        model.addAttribute("weekday", dateforCurentWeek);
 
         //model.addAttribute("curentweek");
         return "week";
