@@ -47,6 +47,9 @@ public class WeekController {
             dateforCurentWeek.put(nameOfDay, datefomr.format(calendar.getTime()));
             calendar.add(Calendar.DAY_OF_WEEK, 1);
 
+            for (int j = 0; i < 48; i++){
+
+            }
         }
         endweek = datefomr.format(calendar.getTime());
         dateforCurentWeek.put("startend", "Неделя:" + startweek + "—" + endweek);

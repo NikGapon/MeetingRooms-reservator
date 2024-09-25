@@ -9,6 +9,18 @@
 <h1 th:text="${weekday.startend}"></h1>
 <a href="#" th:href="@{/}" class="button-5">Вернутся</button></a>
 <div>
+    <table>
+        <thead><tr><th scope="col">1</th></tr></thead>
+        <tbody>
+        <tr>
+        <td>00:00</td>
+
+        </tr>
+        <tr><td>00:30</td></tr>
+        </tbody>
+    </table>
+</div>
+<div >
     <table >
         <thead>
         <tr>
@@ -19,14 +31,20 @@
             <th scope="col">Пятница <br><span th:text="${weekday.Friday}"></span></th>
             <th scope="col">Суббота <br><span th:text="${weekday.Saturday}"></span></th>
             <th scope="col">Воскресенье <br><span th:text="${weekday.Sunday}"></span></th>
+
+
         </tr>
+
         </thead>
+
         <tbody>
         <tr th:each="rooms, iterator: ${rooms}" >
             <td th:text="${rooms.name}" style="width: 20%"/>
             <td th:text="${rooms.description}" style="width: 25%">
 
         </tr>
+
+
         </tbody>
     </table>
 </div>
