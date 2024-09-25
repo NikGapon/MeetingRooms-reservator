@@ -27,6 +27,7 @@ public class MeetingRoomService {
 
     @Transactional
     public void deleteRoom(Long id){
+        //  todo Доделай каскадное удаление
         meetingRoomRepository.deleteById(id);
     }
 

@@ -22,7 +22,7 @@ public class MeetingRoomController {
         this.userService = userService;
     }
 
-    @GetMapping()
+    @GetMapping(value = {"/", ""})
     public String getRooms(Model model){
         model.addAttribute("rooms", meetingRoomService.findAllRooms()
                 .stream()
@@ -31,7 +31,7 @@ public class MeetingRoomController {
         return "rooms";
     }
     @GetMapping(value = {"/room-update", "/room-update/{id}"})
-    public String Update(@PathVariable(required = false) Long id,
+    public String updateRoom(@PathVariable(required = false) Long id,
                          Model model){
         if (id == null || id <= 0) {
             model.addAttribute("room", new MeetingRoomDto());
@@ -44,7 +44,6 @@ public class MeetingRoomController {
 
     @GetMapping("/delete/{id}")
     public String deleteRoom(@PathVariable Long id) {
-        // Удалил админ чеки, spring security может сам убрать запросы
             meetingRoomService.deleteRoom(id);
 
         return "redirect:/admin/rooms";

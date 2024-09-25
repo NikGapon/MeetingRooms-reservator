@@ -5,6 +5,7 @@ import com.nordclan.nikgapon.work_practice_1.controller.MeetingRoomDto;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import org.hibernate.annotations.Cascade;
 
 
 @Entity

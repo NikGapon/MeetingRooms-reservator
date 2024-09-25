@@ -20,11 +20,11 @@ public class MeetingEntity {
     @Size(min = 0, max = 516)
     private String description;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private UserEntity creator;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "meetingroom_id")
     private MeetingRoomEntity room;
 
