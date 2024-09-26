@@ -35,6 +35,7 @@
         <tr th:each="intervalIndex : ${#numbers.sequence(0, 47)}">
             <td th:text="${(intervalIndex / 2)} + ':' + (${intervalIndex % 2 == 0} ? '00' : '30')"></td>
 
+
             <td th:each="daySchedule : ${schedule}">
                 <!--<td>
                     <span th:if="${daySchedule[intervalIndex] != null and !#lists.isEmpty(daySchedule[intervalIndex])}">
@@ -42,7 +43,12 @@
                                    th:href="@{'/meeting/' + ${meeting.id}}"
                                    th:text="${meeting.id}"></a>
                             </span>-->
-                    <span th:if="${#lists.isEmpty(daySchedule[intervalIndex])}">-</span>
+                    <span th:if="${!#lists.isEmpty(daySchedule[intervalIndex])}"><a th:each="meeting : ${daySchedule[intervalIndex]}"
+                                                                                    th:href="@{'/meeting/' + ${meeting.id}}"
+                                                                                    th:text="${meeting.title} + ':'" style="text-decoration: none">  </a>
+
+                    </span>
+                    <span th:if="${#lists.isEmpty(daySchedule[intervalIndex])}"></span>
                 </td>
             </td>
         </tr>
