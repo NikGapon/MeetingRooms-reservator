@@ -11,14 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalAccessor;
 import java.util.*;
 
 @Controller
 @RequestMapping("/week")
 public class WeekController {
     private final MeetingService meetingService;
+    private List<Long>[][] schedule;
 
     public WeekController(MeetingService meetingService) {
         this.meetingService = meetingService;
@@ -26,13 +25,12 @@ public class WeekController {
 
 
     @GetMapping(value = {"/", "", "/{weeknumber}"})
-    public String week(@PathVariable(required = false) Long weeknumber, Model model){
+    public String week(@PathVariable(required = false) Long weeknumber, Model model) {
         Calendar calendar = new GregorianCalendar();
         Locale locale = Locale.UK;
         if (weeknumber == null || weeknumber == 0) {
             calendar.setTime(new Date());
-        }
-        else {
+        } else {
             calendar.setTime(java.sql.Date.valueOf(LocalDate.now().plusDays(7 * weeknumber)));
         }
         calendar.set(Calendar.DAY_OF_WEEK, calendar.getFirstDayOfWeek());
@@ -54,15 +52,14 @@ public class WeekController {
             // 5. increase day field; add() will adjust the month if neccessary
 
 
-
-            System.out.println(nameOfDay +":" + datefomr.format(calendar.getTime()));
+            System.out.println(nameOfDay + ":" + datefomr.format(calendar.getTime()));
             dateforCurentWeek.put(nameOfDay, datefomr.format(calendar.getTime()));
             calendar.add(Calendar.DAY_OF_WEEK, 1);
         }
         endweektext = datefomr.format(calendar.getTime());
         LocalDateTime endweek = LocalDateTime.ofInstant(calendar.toInstant(), calendar.getTimeZone().toZoneId());
 
-        List<MeetingEntity> tets = meetingService.findByTimeInterval(startweek.minusDays(1), endweek.plusDays(1));
+        //List<MeetingEntity> tets = meetingService.findByTimeInterval(startweek.minusDays(1), endweek.plusDays(1));
         //System.out.println(startweek.toString() + endweek.toString());
         //System.out.println(tets);
 
@@ -71,7 +68,36 @@ public class WeekController {
 
         model.addAttribute("weekday", dateforCurentWeek);
 
+        schedule = new ArrayList[7][48];
+        for (int i = 0; i < 7; i++) { // day
+            for (int j = 0; j < 48; j++) { // half-hours interval
+                schedule[i][j] = new ArrayList<>();
+            }
+        }
+        List<MeetingEntity> listAllMeetingsEntity = meetingService.findByTimeInterval(startweek.minusDays(1), endweek.plusDays(1));
+        listAllMeetingsEntity.forEach(elemen -> addMeetingToSchedule(elemen.getStarttime().toLocalDateTime(), elemen.getEndtime().toLocalDateTime(), elemen.getId()));
+
+
+
+
+        for (int i = 0; i < schedule.length; i++) {
+            System.out.println(Arrays.toString(schedule[i]));
+        }
+
         //model.addAttribute("curentweek");
         return "week";
+    }
+
+
+    public void addMeetingToSchedule(LocalDateTime start, LocalDateTime end, Long meetingId) {
+
+        for (LocalDateTime time = start; time.isBefore(end); time = time.plusMinutes(30)) {
+            int dayOfWeek = time.getDayOfWeek().getValue() - 1;
+            int halfHourIndex = (time.getHour() * 2) + (time.getMinute() / 30);
+
+            if (dayOfWeek >= 0 && dayOfWeek < 7 && halfHourIndex >= 0 && halfHourIndex < 48) {
+                schedule[dayOfWeek][halfHourIndex].add(meetingId);
+            }
+        }
     }
 }
