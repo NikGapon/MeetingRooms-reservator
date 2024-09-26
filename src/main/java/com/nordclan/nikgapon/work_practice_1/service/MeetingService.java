@@ -1,5 +1,6 @@
 package com.nordclan.nikgapon.work_practice_1.service;
 
+import com.nordclan.nikgapon.work_practice_1.model.MeetingEntity;
 import com.nordclan.nikgapon.work_practice_1.model.MeetingRoomEntity;
 import com.nordclan.nikgapon.work_practice_1.repository.MeetingRepository;
 import com.nordclan.nikgapon.work_practice_1.repository.MeetingRoomRepository;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -20,7 +22,7 @@ public class MeetingService {
         this.meetingRepository = meetingRepository;
     }
     @Transactional(readOnly = true)
-    public List<MeetingRoomEntity> findByTimeInterval(LocalDate starttime, LocalDate endtime) {
+    public List<MeetingEntity> findByTimeInterval(LocalDateTime starttime, LocalDateTime endtime) {
         return meetingRepository.findByTimeInterval(starttime, endtime);
     }
 }

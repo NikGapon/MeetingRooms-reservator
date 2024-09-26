@@ -1,5 +1,7 @@
 package com.nordclan.nikgapon.work_practice_1.controller;
 
+import com.nordclan.nikgapon.work_practice_1.model.MeetingEntity;
+import com.nordclan.nikgapon.work_practice_1.service.MeetingService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAccessor;
 import java.util.*;
@@ -15,6 +18,13 @@ import java.util.*;
 @Controller
 @RequestMapping("/week")
 public class WeekController {
+    private final MeetingService meetingService;
+
+    public WeekController(MeetingService meetingService) {
+        this.meetingService = meetingService;
+    }
+
+
     @GetMapping(value = {"/", "", "/{weeknumber}"})
     public String week(@PathVariable(required = false) Long weeknumber, Model model){
         Calendar calendar = new GregorianCalendar();
@@ -29,8 +39,10 @@ public class WeekController {
         Map<String, String> dateforCurentWeek = new HashMap<>();
         //DateTimeFormatter datefomr = DateTimeFormatter.ofPattern("dd-MM-yyyy", Locale.ENGLISH);
         SimpleDateFormat datefomr = new SimpleDateFormat("dd.MM.yyyy");
-        String startweek = datefomr.format(calendar.getTime());
-        String endweek;
+        String startweektext = datefomr.format(calendar.getTime());
+        String endweektext;
+        LocalDateTime startweek = LocalDateTime.ofInstant(calendar.toInstant(), calendar.getTimeZone().toZoneId());
+
         for (int i = 0; i < 7; i++) {
             String nameOfMonth = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, locale);
             String nameOfDay = calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, locale);
@@ -46,13 +58,16 @@ public class WeekController {
             System.out.println(nameOfDay +":" + datefomr.format(calendar.getTime()));
             dateforCurentWeek.put(nameOfDay, datefomr.format(calendar.getTime()));
             calendar.add(Calendar.DAY_OF_WEEK, 1);
-
-            for (int j = 0; i < 48; i++){
-
-            }
         }
-        endweek = datefomr.format(calendar.getTime());
-        dateforCurentWeek.put("startend", "Неделя:" + startweek + "—" + endweek);
+        endweektext = datefomr.format(calendar.getTime());
+        LocalDateTime endweek = LocalDateTime.ofInstant(calendar.toInstant(), calendar.getTimeZone().toZoneId());
+
+        List<MeetingEntity> tets = meetingService.findByTimeInterval(startweek.minusDays(1), endweek.plusDays(1));
+        //System.out.println(startweek.toString() + endweek.toString());
+        //System.out.println(tets);
+
+
+        dateforCurentWeek.put("startend", "Неделя:" + startweektext + "—" + endweektext);
 
         model.addAttribute("weekday", dateforCurentWeek);
 
