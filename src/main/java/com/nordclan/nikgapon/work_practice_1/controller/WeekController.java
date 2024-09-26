@@ -17,7 +17,7 @@ import java.util.*;
 @RequestMapping("/week")
 public class WeekController {
     private final MeetingService meetingService;
-    private List<Long>[][] schedule;
+    private List<MeetingEntity>[][] schedule;
 
     public WeekController(MeetingService meetingService) {
         this.meetingService = meetingService;
@@ -75,7 +75,7 @@ public class WeekController {
             }
         }
         List<MeetingEntity> listAllMeetingsEntity = meetingService.findByTimeInterval(startweek.minusDays(1), endweek.plusDays(1));
-        listAllMeetingsEntity.forEach(elemen -> addMeetingToSchedule(elemen.getStarttime().toLocalDateTime(), elemen.getEndtime().toLocalDateTime(), elemen.getId()));
+        listAllMeetingsEntity.forEach(elemen -> addMeetingToSchedule(elemen.getStarttime().toLocalDateTime(), elemen.getEndtime().toLocalDateTime(), elemen));
 
 
 
@@ -84,19 +84,19 @@ public class WeekController {
             System.out.println(Arrays.toString(schedule[i]));
         }
 
-        //model.addAttribute("curentweek");
+        model.addAttribute("schedule", schedule);
         return "week";
     }
 
 
-    public void addMeetingToSchedule(LocalDateTime start, LocalDateTime end, Long meetingId) {
+    public void addMeetingToSchedule(LocalDateTime start, LocalDateTime end, MeetingEntity meeting) {
 
         for (LocalDateTime time = start; time.isBefore(end); time = time.plusMinutes(30)) {
             int dayOfWeek = time.getDayOfWeek().getValue() - 1;
             int halfHourIndex = (time.getHour() * 2) + (time.getMinute() / 30);
 
             if (dayOfWeek >= 0 && dayOfWeek < 7 && halfHourIndex >= 0 && halfHourIndex < 48) {
-                schedule[dayOfWeek][halfHourIndex].add(meetingId);
+                schedule[dayOfWeek][halfHourIndex].add(meeting);
             }
         }
     }
