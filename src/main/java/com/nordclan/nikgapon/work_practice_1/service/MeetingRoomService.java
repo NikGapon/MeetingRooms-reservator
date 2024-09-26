@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -50,6 +52,14 @@ public class MeetingRoomService {
         room.setName(dto.getName());
         room.setDescription(dto.getDescription());
         return meetingRoomRepository.save(room);
+    }
+
+    @Transactional
+    public Map<Long, String> allRoomMapIdName(){
+        List<MeetingRoomEntity> allRooms = findAllRooms();
+        HashMap<Long, String> mapForRooms = new HashMap<>();
+        allRooms.forEach(element -> mapForRooms.put(element.getId(), element.getName()));
+        return mapForRooms;
     }
 }
 

@@ -1,6 +1,7 @@
 package com.nordclan.nikgapon.work_practice_1.controller;
 
 import com.nordclan.nikgapon.work_practice_1.model.MeetingEntity;
+import com.nordclan.nikgapon.work_practice_1.service.MeetingRoomService;
 import com.nordclan.nikgapon.work_practice_1.service.MeetingService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,10 +18,12 @@ import java.util.*;
 @RequestMapping("/week")
 public class WeekController {
     private final MeetingService meetingService;
+    private final MeetingRoomService meetingRoomService;
     private List<MeetingEntity>[][] schedule;
 
-    public WeekController(MeetingService meetingService) {
+    public WeekController(MeetingService meetingService, MeetingRoomService meetingRoomService) {
         this.meetingService = meetingService;
+        this.meetingRoomService = meetingRoomService;
     }
 
 
@@ -77,7 +80,7 @@ public class WeekController {
         List<MeetingEntity> listAllMeetingsEntity = meetingService.findByTimeInterval(startweek.minusDays(1), endweek.plusDays(1));
         listAllMeetingsEntity.forEach(elemen -> addMeetingToSchedule(elemen.getStarttime().toLocalDateTime(), elemen.getEndtime().toLocalDateTime(), elemen));
 
-
+        model.addAttribute("rooms",meetingRoomService.allRoomMapIdName());
 
 
         for (int i = 0; i < schedule.length; i++) {

@@ -45,8 +45,8 @@
                             </span>-->
                     <span th:if="${!#lists.isEmpty(daySchedule[intervalIndex])}"><a th:each="meeting : ${daySchedule[intervalIndex]}"
                                                                                     th:href="@{'/meeting/' + ${meeting.id}}"
-                                                                                    th:text="${meeting.title} + ':'" style="text-decoration: none">  </a>
-
+                                                                                    th:text="${meeting.id} + ':' + ${meeting.title}" style="text-decoration: none">  </a>
+                                                                                                    <!-- ${rooms.get(meeting.meetingroom_id)} -->
                     </span>
                     <span th:if="${#lists.isEmpty(daySchedule[intervalIndex])}"></span>
                 </td>
