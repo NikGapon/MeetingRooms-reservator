@@ -10,12 +10,13 @@ html, body {
 .schedule_cell{
     background-color: #2F6E4E;
     padding: 10px;
-
-
+    height: 100%;
+    float: left;
 }
-table{
+table, td, th{
   border-spacing: 0px;
   border-collapse: collapse;
+
 }
 
 .button-5 {
