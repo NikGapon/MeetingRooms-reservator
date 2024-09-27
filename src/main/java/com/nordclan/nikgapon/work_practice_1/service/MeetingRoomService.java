@@ -54,7 +54,7 @@ public class MeetingRoomService {
         return meetingRoomRepository.save(room);
     }
 
-    @Transactional
+    @Transactional  // todo For deletion, it was not useful
     public Map<Long, String> allRoomMapIdName(){
         List<MeetingRoomEntity> allRooms = findAllRooms();
         HashMap<Long, String> mapForRooms = new HashMap<>();

@@ -4,7 +4,7 @@
 <head>
     <title th:text="${weekday.startend}"></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" href="/static/css/main.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/week.css" type="text/css">
 </head>
 <body>
 <h1 th:text="${weekday.startend}"></h1>
@@ -16,14 +16,14 @@
     <table >
         <thead>
         <tr>
-            <th scope="col"> </th>
-            <th scope="col">Понедельник <br><span th:text="${weekday.Monday}"></span></th>
-            <th scope="col">Вторник <br><span th:text="${weekday.Tuesday}"></span></th>
-            <th scope="col">Среда <br><span th:text="${weekday.Wednesday}"></span></th>
-            <th scope="col">Четверг <br><span th:text="${weekday.Thursday}"></span></th>
-            <th scope="col">Пятница <br><span th:text="${weekday.Friday}"></span></th>
-            <th scope="col">Суббота <br><span th:text="${weekday.Saturday}"></span></th>
-            <th scope="col">Воскресенье <br><span th:text="${weekday.Sunday}"></span></th>
+            <th scope="col" style="width: 2%"> </th>
+            <th scope="col" style="width: 14%">Понедельник <br><span th:text="${weekday.Monday}"></span></th>
+            <th scope="col" style="width: 14%">Вторник <br><span th:text="${weekday.Tuesday}"></span></th>
+            <th scope="col" style="width: 14%">Среда <br><span th:text="${weekday.Wednesday}"></span></th>
+            <th scope="col" style="width: 14%">Четверг <br><span th:text="${weekday.Thursday}"></span></th>
+            <th scope="col" style="width: 14%">Пятница <br><span th:text="${weekday.Friday}"></span></th>
+            <th scope="col" style="width: 14%">Суббота <br><span th:text="${weekday.Saturday}"></span></th>
+            <th scope="col" style="width: 14%">Воскресенье <br><span th:text="${weekday.Sunday}"></span></th>
 
 
         </tr>
@@ -43,11 +43,11 @@
                                    th:href="@{'/meeting/' + ${meeting.id}}"
                                    th:text="${meeting.id}"></a>
                             </span>-->
-                    <span th:if="${!#lists.isEmpty(daySchedule[intervalIndex])}" ><a th:each="meeting : ${daySchedule[intervalIndex]}"
+                    <div class="schedule_cell" th:if="${!#lists.isEmpty(daySchedule[intervalIndex])}" ><div th:each="meeting : ${daySchedule[intervalIndex]}"><a
                                                                                     th:href="@{'/meeting/' + ${meeting.id}}"
-                                                                                    th:text="${meeting.room.name} + ':' + ${meeting.title}" style="text-decoration: none;">  </a>
+                                                                                    th:text="${meeting.room.name} + ':' + ${meeting.title}" >  </a></div>
                                                                                                     <!-- ${rooms.get(meeting.meetingroom_id)} -->
-                    </span>
+                    </div>
                     <span th:if="${#lists.isEmpty(daySchedule[intervalIndex])}"></span>
                 </td>
             </td>

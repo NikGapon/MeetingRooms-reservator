@@ -1,0 +1,111 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
+html, body {
+    background-color: #cadaba;
+    font-family: 'Roboto', sans-serif;
+}
+.wrapper {
+  width: 300px;
+  margin: 12% auto;
+}
+.schedule_cell{
+    background-color: #2F6E4E;
+    padding: 10px;
+
+
+}
+table{
+  border-spacing: 0px;
+  border-collapse: collapse;
+}
+
+.button-5 {
+  align-items: center;
+  background-clip: padding-box;
+  background-color: #44944A;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  line-height: 1.25;
+  margin: 0;
+  min-height: 3rem;
+  padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+  position: relative;
+  text-decoration: none;
+  transition: all 250ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  width: auto;
+}
+
+.button-5:hover,
+.button-5:focus {
+  background-color: #2b5d2f;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+}
+
+.button-5:hover {
+  transform: translateY(-1px);
+}
+
+.button-5:active {
+  background-color: #2b5d2f;
+  box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+  transform: translateY(0);
+}
+
+
+
+
+
+ a {
+	padding: 2px 0;
+}
+
+ a::after {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	width: 100%;
+	height: 4px;
+	background: rgba(0,0,0,0.1);
+	content: '';
+	opacity: 0;
+	-webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
+	-moz-transition: opacity 0.3s, -moz-transform 0.3s;
+	transition: opacity 0.3s, transform 0.3s;
+	-webkit-transform: translateY(10px);
+	-moz-transform: translateY(10px);
+	transform: translateY(10px);
+}
+
+a:hover::after,
+a:focus::after {
+	opacity: 1;
+	-webkit-transform: translateY(0px);
+	-moz-transform: translateY(0px);
+	transform: translateY(0px);
+}
+a {
+	position: relative;
+	display: inline-block;
+	outline: none;
+	color: #fff;
+	text-decoration: none;
+
+	text-shadow: 0 0 1px rgba(255,255,255,0.3);
+
+}
+
+ a:hover,
+ a:focus {
+	outline: none;
+}
+
+
