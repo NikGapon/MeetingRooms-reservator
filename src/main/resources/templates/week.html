@@ -36,16 +36,16 @@
             <td th:text="${(intervalIndex / 2)} + ':' + (${intervalIndex % 2 == 0} ? '00' : '30')"></td>
 
 
-            <td th:each="daySchedule : ${schedule}">
+            <td th:each="daySchedule : ${schedule}" >
                 <!--<td>
                     <span th:if="${daySchedule[intervalIndex] != null and !#lists.isEmpty(daySchedule[intervalIndex])}">
                                 <a th:each="meeting : ${daySchedule[intervalIndex]}"
                                    th:href="@{'/meeting/' + ${meeting.id}}"
                                    th:text="${meeting.id}"></a>
                             </span>-->
-                    <span th:if="${!#lists.isEmpty(daySchedule[intervalIndex])}"><a th:each="meeting : ${daySchedule[intervalIndex]}"
+                    <span th:if="${!#lists.isEmpty(daySchedule[intervalIndex])}" ><a th:each="meeting : ${daySchedule[intervalIndex]}"
                                                                                     th:href="@{'/meeting/' + ${meeting.id}}"
-                                                                                    th:text="${meeting.id} + ':' + ${meeting.title}" style="text-decoration: none">  </a>
+                                                                                    th:text="${meeting.room.name} + ':' + ${meeting.title}" style="text-decoration: none;">  </a>
                                                                                                     <!-- ${rooms.get(meeting.meetingroom_id)} -->
                     </span>
                     <span th:if="${#lists.isEmpty(daySchedule[intervalIndex])}"></span>

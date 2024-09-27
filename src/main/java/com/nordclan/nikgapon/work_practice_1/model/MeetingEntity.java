@@ -71,6 +71,13 @@ public class MeetingEntity {
         this.endtime = endtime;
     }
 
+    public MeetingRoomEntity getRoom() {
+        return room;
+    }
+
+    public void setRoom(MeetingRoomEntity room) {
+        this.room = room;
+    }
 
     public MeetingEntity(){
 
