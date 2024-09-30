@@ -30,29 +30,16 @@
             <th scope="col" style="width: 14%">Пятница <br><span th:text="${weekday.Friday}"></span></th>
             <th scope="col" style="width: 14%">Суббота <br><span th:text="${weekday.Saturday}"></span></th>
             <th scope="col" style="width: 14%">Воскресенье <br><span th:text="${weekday.Sunday}"></span></th>
-
-
         </tr>
-
         </thead>
 
         <tbody>
-
         <tr th:each="intervalIndex : ${#numbers.sequence(0, 47)}">
             <td th:text="${intervalIndex % 2 == 0 ? intervalIndex / 2  + ':00' : ''}"></td>
-
-
             <td th:each="daySchedule : ${schedule}" >
-                <!--<td>
-                    <span th:if="${daySchedule[intervalIndex] != null and !#lists.isEmpty(daySchedule[intervalIndex])}">
-                                <a th:each="meeting : ${daySchedule[intervalIndex]}"
-                                   th:href="@{'/meeting/' + ${meeting.id}}"
-                                   th:text="${meeting.id}"></a>
-                            </span>-->
                     <div class="schedule_cell" th:if="${!#lists.isEmpty(daySchedule[intervalIndex])}" ><div th:each="meeting : ${daySchedule[intervalIndex]}"><a
                                                                                     th:href="@{'/meeting/' + ${meeting.id}}"
                                                                                     th:text="${meeting.room.name} + ':' + ${meeting.title}" >  </a></div>
-                                                                                                    <!-- ${rooms.get(meeting.meetingroom_id)} -->
                     </div>
                     <span th:if="${#lists.isEmpty(daySchedule[intervalIndex])}"></span>
                 </td>
@@ -61,6 +48,5 @@
         </tbody>
     </table>
 </div>
-
 </body>
 </html>
