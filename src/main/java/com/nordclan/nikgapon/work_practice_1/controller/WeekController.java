@@ -4,9 +4,7 @@ import com.nordclan.nikgapon.work_practice_1.model.MeetingEntity;
 import com.nordclan.nikgapon.work_practice_1.service.MeetingService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -28,6 +26,14 @@ public class WeekController {
     public String week(@PathVariable(required = false) Long weeknumber, Model model) {
         Calendar calendar = new GregorianCalendar();
         Locale locale = Locale.UK;
+
+        long curentWeek;
+        if (weeknumber == null) curentWeek = 0;
+        else curentWeek = weeknumber;
+        //System.out.println(curentWeek);
+        model.addAttribute("weeknumber", curentWeek);
+
+
         if (weeknumber == null || weeknumber == 0) {
             calendar.setTime(new Date());
         } else {
@@ -75,7 +81,7 @@ public class WeekController {
                 schedule[i][j] = new ArrayList<>();
             }
         }
-        System.out.println(startweektext +":"+ startweek +"  " + endweektext + ":" + endweek);
+        //System.out.println(startweektext +":"+ startweek +"  " + endweektext + ":" + endweek);
         List<MeetingEntity> listAllMeetingsEntity = meetingService.findByTimeInterval(startweek.minusDays(0), endweek.plusDays(0)); // todo Разобраться с междневным и меж недельными занятиями, затестировать в хлам
         listAllMeetingsEntity.forEach(elemen -> addMeetingToSchedule(elemen.getStarttime().toLocalDateTime(), elemen.getEndtime().toLocalDateTime(), elemen));
 
@@ -88,6 +94,13 @@ public class WeekController {
         model.addAttribute("schedule", schedule);
         return "week";
     }
+
+    @PostMapping(value = {"/", "", "/{weeknumber}"})
+    public String toDate(@RequestParam("date") Date date){
+        System.out.println(date); ///todo Доделать
+        return "redirect:/week/";
+    }
+
 
 
     public void addMeetingToSchedule(LocalDateTime start, LocalDateTime end, MeetingEntity meeting) {
