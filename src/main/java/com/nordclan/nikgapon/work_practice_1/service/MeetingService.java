@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MeetingService {
@@ -24,5 +25,22 @@ public class MeetingService {
     @Transactional(readOnly = true)
     public List<MeetingEntity> findByTimeInterval(LocalDateTime starttime, LocalDateTime endtime) {
         return meetingRepository.findByTimeInterval(starttime, endtime);
+    }
+
+    @Transactional
+    public MeetingEntity findMeeting(Long id){
+        final Optional<MeetingEntity> meeting = meetingRepository.findById(id);
+        return meeting.orElseThrow(() -> new MeetingNotFoundException(id));
+
+    }
+    @Transactional
+    public void deleteMeeting(Long id){
+        meetingRepository.deleteById(id);
+    }
+}
+
+class MeetingNotFoundException extends RuntimeException{
+    public MeetingNotFoundException(Long id){
+        super(String.format("Meeting with id [%s] ius not found", id ));
     }
 }

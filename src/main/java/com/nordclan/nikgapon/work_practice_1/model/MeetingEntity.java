@@ -21,7 +21,7 @@ public class MeetingEntity {
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "creator", nullable = false)
     private UserEntity creator;
 
     @ManyToOne
@@ -40,6 +40,7 @@ public class MeetingEntity {
     public Long getId() {
         return id;
     }
+
 
     public String getTitle() {
         return title;
@@ -75,20 +76,37 @@ public class MeetingEntity {
         return room;
     }
 
+    public UserEntity getCreator() {
+        return creator;
+    }
+
+    public void setCreator(UserEntity creator) {
+        this.creator = creator;
+    }
+
     public void setRoom(MeetingRoomEntity room) {
         this.room = room;
+    }
+
+    public List<UserEntity> getGuests() {
+        return guests;
+    }
+
+    public void setGuests(List<UserEntity> guests) {
+        this.guests = guests;
     }
 
     public MeetingEntity(){
 
     }
 
-    public boolean cheekers(Timestamp new_time){
+
+/*    public boolean cheekers(Timestamp new_time){
         if (starttime.compareTo(new_time) > 0 && endtime.compareTo(new_time) < 0){
             return true;
         }
         return false;
-    }
+    }*/
 
 
     @Override
