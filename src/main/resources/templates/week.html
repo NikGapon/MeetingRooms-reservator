@@ -40,7 +40,7 @@
 
         <tr th:each="intervalIndex : ${#numbers.sequence(0, 47)}">
             <td th:text="${intervalIndex % 2 == 0 ? intervalIndex / 2  + ':00' : ''}"></td>
-                <!-- todo Доделать, что был вывод не по пол часа, а по часу  -->
+
 
             <td th:each="daySchedule : ${schedule}" >
                 <!--<td>
