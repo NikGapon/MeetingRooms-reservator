@@ -10,6 +10,6 @@ import java.util.List;
 
 
 public interface MeetingRepository extends JpaRepository<MeetingEntity, Long> {
-    @Query(value = "SELECT * FROM public.meeting WHERE starttime > ?1 OR endtime <= ?2",nativeQuery = true)
+    @Query(value = "SELECT * FROM public.meeting WHERE starttime > ?1 AND endtime < ?2",nativeQuery = true)
     List<MeetingEntity> findByTimeInterval(LocalDateTime startDate, LocalDateTime endDate);
 }
