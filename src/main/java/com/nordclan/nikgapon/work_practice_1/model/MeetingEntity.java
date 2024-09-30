@@ -29,8 +29,8 @@ public class MeetingEntity {
     private MeetingRoomEntity room;
 
     @ManyToMany
-    @JoinTable(name= "guest", joinColumns = { @JoinColumn(name = "user_id") },
-            inverseJoinColumns = { @JoinColumn(name = "meeting_id")})
+    @JoinTable(name= "guest", joinColumns = { @JoinColumn(name = "meeting_id") },
+            inverseJoinColumns = { @JoinColumn(name = "user_id")})
 
     private List<UserEntity> guests;
 

@@ -16,8 +16,13 @@
 <br>
 <span th:text="'Время: ' + ${meeting.starttime} + '—' + ${meeting.endtime}"></span>
 <br>
-<div th:each="meeting.guests">
 
+<div th:if="${!#lists.isEmpty(meeting.guests)}">
+    <span >Приглашенные сотрудники:</span>
+    <br>
+    <div  th:each="guest : ${meeting.guests}">
+        <span th:text="${guest.FIO}"></span>
+    </div>
 </div>
 </body>
 </html>
