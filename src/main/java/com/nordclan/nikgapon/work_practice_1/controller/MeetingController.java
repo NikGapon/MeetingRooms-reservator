@@ -29,6 +29,7 @@ public class MeetingController {
         } else {
             model.addAttribute("meeting", new MeetingDto(meetingService.findMeeting(id)));
             if (meetingService.findMeeting(id).getCreator() != userService.findByLogin(principal.getName())){
+
                 return "meeting";
             }
         }

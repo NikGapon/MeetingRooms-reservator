@@ -28,6 +28,7 @@ public class MeetingDto {
         this.description = meetingEntity.getDescription();
         this.starttime = meetingEntity.getStarttime();
         this.endtime = meetingEntity.getEndtime();
+        this.creator = meetingEntity.getCreator();
 
         this.room = meetingEntity.getRoom();
         this.guests = meetingEntity.getGuests();

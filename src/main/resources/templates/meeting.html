@@ -6,6 +6,18 @@
     <link rel="stylesheet" href="../static/css/main.css" type="text/css">
 </head>
 <body>
-    Этот для просмотра
+<a href="#" th:href="@{/week/}" class="button-5">Обратно к календарю</button></a>
+<br>
+<span th:text="'Название: ' + ${meeting.title}" > </span>
+<br>
+<span th:text="'Создатель: ' + ${meeting.creator.FIO}" > </span>
+<br>
+<span th:text="'Переговорка: ' + ${meeting.room.name}"></span>
+<br>
+<span th:text="'Время: ' + ${meeting.starttime} + '—' + ${meeting.endtime}"></span>
+<br>
+<div th:each="meeting.guests">
+
+</div>
 </body>
 </html>
