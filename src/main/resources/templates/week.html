@@ -8,12 +8,11 @@
 </head>
 <body>
 <h1 th:text="${weekday.startend}"></h1>
-<a href="#" th:href="@{/}" class="button-5">Вернутся</button></a>
+<a href="#" th:href="@{/}" class="button-5">Назад</button></a>
 <form class="back_col_class" method="post">
     <input  type="date" name="date" class="button-6">
     <button type="submit" class="button-6">Перейти</button>
 </form>
-<br>
 <a href="#" th:href="@{/meeting/}" class="button-5">Создать встречу</button></a>
 <div>
     <a href="#" th:href="@{|/week/${weeknumber - 1}|}" class="button-5">←Назад</button></a>

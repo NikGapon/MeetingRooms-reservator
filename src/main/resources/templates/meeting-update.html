@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="wrapper">
-    <a href="#" th:href="@{/week/}" class="button-5">Обратно к календарю</button></a>
+
     <br>
 <form action="#" th:action="@{/meeting/{id}(id=${id})}" th:object="${meeting}" method="post" enctype="multipart/form-data">
 
@@ -19,17 +19,31 @@
     <input type="text"  id="description" th:field="${meeting.description}" required="true">
 
     <label for="starttime" style="margin-top: 10px">Дата начала: </label>
-    <input type="datetime"  id="starttime" th:field="${meeting.starttime}" required="true">
+    <input type="datetime-local"  id="starttime" th:field="${meeting.starttime}" required="true">
 
     <label for="endtime" style="margin-top: 10px">Дата окончания</label>
-    <input type="datetime"  id="endtime" th:field="${meeting.endtime}" required="true">
+    <input type="datetime-local"  id="endtime" th:field="${meeting.endtime}" required="true">
 
 
     <span th:text="'Создатель: Вы'" style="margin-top: 10px" ></span>
 
+    <br>
+    <select name="selectedRoom"></select>
+    <br>
+    <span>Гости: </span>
+    <select multiple="multiple" name="selectedUsers">
+        <th:block th:each="user : ${users}">
+            <option th:if="${id != null}" th:value="${user.id}"
+                    th:text="${user.FIO} + ':' + ${user.login}"
+                    th:selected="${meeting.guests.contains(user)}">
+            </option>
 
-
-
+            <option th:if="${id == null}" th:value="${user.id}"
+                    th:text="${user.FIO} + ':' + ${user.login}"
+                    >
+            </option>
+        </th:block>
+    </select>
     <br>
     <button class="button-5" type="submit" style="margin-top: 10px" >
                 <span th:if="${id == null}">
@@ -43,6 +57,7 @@
 
 
 </form>
+    <a href="#" th:href="@{/week/}" class="button-5">Обратно к календарю</button></a>
 </div>
 </body>
 </html>
