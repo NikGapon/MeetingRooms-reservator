@@ -8,16 +8,26 @@
 </head>
 <body>
 <div class="wrapper">
+    <a href="#" th:href="@{/week/}" class="button-5">Обратно к календарю</button></a>
+    <br>
 <form action="#" th:action="@{/meeting/{id}(id=${id})}" th:object="${meeting}" method="post" enctype="multipart/form-data">
 
     <label for="name" >Название: </label>
     <input type="text"  id="name" th:field="${meeting.title}" required="true">
 
-    <label for="description" style="margin-top: 10px">Описание</label>
+    <label for="description" style="margin-top: 10px">Описание: </label>
     <input type="text"  id="description" th:field="${meeting.description}" required="true">
+
+    <label for="starttime" style="margin-top: 10px">Дата начала: </label>
+    <input type="datetime"  id="starttime" th:field="${meeting.starttime}" required="true">
+
+    <label for="endtime" style="margin-top: 10px">Дата окончания</label>
+    <input type="datetime"  id="endtime" th:field="${meeting.endtime}" required="true">
 
 
     <span th:text="'Создатель: Вы'" style="margin-top: 10px" ></span>
+
+
 
 
     <br>
