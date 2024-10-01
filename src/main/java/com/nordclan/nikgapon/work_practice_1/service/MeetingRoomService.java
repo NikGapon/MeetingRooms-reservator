@@ -54,13 +54,6 @@ public class MeetingRoomService {
         return meetingRoomRepository.save(room);
     }
 
-    @Transactional  // todo For deletion, it was not useful
-    public Map<Long, String> allRoomMapIdName(){
-        List<MeetingRoomEntity> allRooms = findAllRooms();
-        HashMap<Long, String> mapForRooms = new HashMap<>();
-        allRooms.forEach(element -> mapForRooms.put(element.getId(), element.getName()));
-        return mapForRooms;
-    }
 }
 
 class RoomNotFoundException extends RuntimeException{

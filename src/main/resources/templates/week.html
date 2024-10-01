@@ -9,11 +9,12 @@
 <body>
 <h1 th:text="${weekday.startend}"></h1>
 <a href="#" th:href="@{/}" class="button-5">Вернутся</button></a>
-<form class="back_col_class">
-<input  type="date" name="date" class="button-6">
+<form class="back_col_class" method="post">
+    <input  type="date" name="date" class="button-6">
     <button type="submit" class="button-6">Перейти</button>
 </form>
 <br>
+<a href="#" th:href="@{/meeting/}" class="button-5">Создать встречу</button></a>
 <div>
     <a href="#" th:href="@{|/week/${weeknumber - 1}|}" class="button-5">←Назад</button></a>
     <a href="#" th:href="@{|/week/${weeknumber + 1}|}" class="button-5">Вперед→</button></a>
@@ -35,7 +36,7 @@
 
         <tbody>
         <tr th:each="intervalIndex : ${#numbers.sequence(0, 47)}">
-            <td th:text="${intervalIndex % 2 == 0 ? intervalIndex / 2  + ':00' : ''}"></td>
+            <td th:text="${intervalIndex % 2 == 0 ? intervalIndex / 2  + ':00' : ''}" style="vertical-align: top;"></td>
             <td th:each="daySchedule : ${schedule}" >
                     <div class="schedule_cell" th:if="${!#lists.isEmpty(daySchedule[intervalIndex])}" ><div th:each="meeting : ${daySchedule[intervalIndex]}"><a
                                                                                     th:href="@{'/meeting/' + ${meeting.id}}"

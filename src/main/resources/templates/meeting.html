@@ -6,8 +6,11 @@
     <link rel="stylesheet" href="../static/css/main.css" type="text/css">
 </head>
 <body>
+<div class="wrapper">
+
 <a href="#" th:href="@{/week/}" class="button-5">Обратно к календарю</button></a>
 <br>
+    <br>
 <span th:text="'Название: ' + ${meeting.title}" > </span>
 <br>
 <span th:text="'Создатель: ' + ${meeting.creator.FIO}" > </span>
@@ -23,6 +26,7 @@
     <div  th:each="guest : ${meeting.guests}">
         <span th:text="${guest.FIO}"></span>
     </div>
+</div>
 </div>
 </body>
 </html>

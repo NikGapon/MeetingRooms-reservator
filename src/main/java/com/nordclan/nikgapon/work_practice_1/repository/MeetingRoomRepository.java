@@ -5,7 +5,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 
 public interface MeetingRoomRepository extends JpaRepository<MeetingRoomEntity, Long> {
-    //MeetingRoomEntity findOneByNameIgnoreCase(String Name);
-    //Optional<UserEntity> findByLogin(String login);
-
 }

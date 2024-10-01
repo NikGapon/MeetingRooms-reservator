@@ -16,10 +16,12 @@ import java.security.Principal;
 public class MeetingController {
     private final MeetingService meetingService;
     private final UserService userService;
+    private final MeetingRoomService meetingRoomService;
 
-    public MeetingController(MeetingService meetingService, UserService userService) {
+    public MeetingController(MeetingService meetingService, UserService userService, MeetingRoomService meetingRoomService) {
         this.meetingService = meetingService;
         this.userService = userService;
+        this.meetingRoomService = meetingRoomService;
     }
     @GetMapping(value = {"/", "/{id}"})
     public String updateRoom(@PathVariable(required = false) Long id,
@@ -29,10 +31,12 @@ public class MeetingController {
         } else {
             model.addAttribute("meeting", new MeetingDto(meetingService.findMeeting(id)));
             if (meetingService.findMeeting(id).getCreator() != userService.findByLogin(principal.getName())){
-
                 return "meeting";
             }
         }
+        model.addAttribute("users", userService.findAllUsers());
+        model.addAttribute("rooms", meetingRoomService.findAllRooms());
+
         return "meeting-update";
     }
 

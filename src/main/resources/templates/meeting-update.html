@@ -7,6 +7,32 @@
 </head>
 </head>
 <body>
-    Этот для редактирования/создания
+<div class="wrapper">
+<form action="#" th:action="@{/meeting/{id}(id=${id})}" th:object="${meeting}" method="post" enctype="multipart/form-data">
+
+    <label for="name" >Название: </label>
+    <input type="text"  id="name" th:field="${meeting.title}" required="true">
+
+    <label for="description" style="margin-top: 10px">Описание</label>
+    <input type="text"  id="description" th:field="${meeting.description}" required="true">
+
+
+    <span th:text="'Создатель: Вы'" style="margin-top: 10px" ></span>
+
+
+    <br>
+    <button class="button-5" type="submit" style="margin-top: 10px" >
+                <span th:if="${id == null}">
+                    <i></i> Добавить встречу
+                </span>
+        <span th:if="${id != null}">
+                    <i  aria-hidden="true"></i> Сохранить
+                </span>
+    </button>
+    <br>
+
+
+</form>
+</div>
 </body>
 </html>
