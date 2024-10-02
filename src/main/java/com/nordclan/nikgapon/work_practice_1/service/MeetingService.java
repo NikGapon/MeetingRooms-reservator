@@ -1,15 +1,12 @@
 package com.nordclan.nikgapon.work_practice_1.service;
 
+import com.nordclan.nikgapon.work_practice_1.controller.MeetingDto;
 import com.nordclan.nikgapon.work_practice_1.model.MeetingEntity;
-import com.nordclan.nikgapon.work_practice_1.model.MeetingRoomEntity;
 import com.nordclan.nikgapon.work_practice_1.repository.MeetingRepository;
-import com.nordclan.nikgapon.work_practice_1.repository.MeetingRoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -36,6 +33,24 @@ public class MeetingService {
     @Transactional
     public void deleteMeeting(Long id){
         meetingRepository.deleteById(id);
+    }
+
+    public MeetingEntity addRoom(MeetingDto dto) {
+        final MeetingEntity meeting = new MeetingEntity(dto);
+        return meetingRepository.save(meeting);
+    }
+
+    public MeetingEntity updateRoom(Long id, MeetingDto dto) {
+        final MeetingEntity meeting = findMeeting(id);
+        meeting.setTitle(dto.getTitle());
+        meeting.setDescription(dto.getDescription());
+        meeting.setRoom(dto.getRoom());
+        meeting.setCreator(dto.getCreator());
+        meeting.setStarttime(dto.getStarttime());
+        meeting.setEndtime(dto.getEndtime());
+        meeting.setGuests(dto.getGuests());
+        return meetingRepository.save(meeting);
+
     }
 }
 

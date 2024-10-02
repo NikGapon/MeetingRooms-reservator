@@ -5,10 +5,10 @@ import com.nordclan.nikgapon.work_practice_1.service.MeetingService;
 import com.nordclan.nikgapon.work_practice_1.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.security.Principal;
 
 @Controller
@@ -45,5 +45,26 @@ public class MeetingController {
         meetingService.deleteMeeting(id);
 
         return "redirect:/week/";
+    }
+
+    @PostMapping(value = {"/", "/{id}"})
+    public String saveMeeting(@PathVariable(required = false) Long id,
+
+                           @ModelAttribute("meeting") MeetingDto meetingDto,
+                           BindingResult bindingResult,
+                           Model model) throws IOException {
+
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("errors",
+                    bindingResult.getAllErrors());
+            return "update-room";
+        }
+        if (id == null || id <= 0) {
+            meetingService.addRoom(meetingDto);
+            return "redirect:/week";
+        } else {
+            meetingService.updateRoom(id, meetingDto);
+        }
+        return "redirect:/week";
     }
 }

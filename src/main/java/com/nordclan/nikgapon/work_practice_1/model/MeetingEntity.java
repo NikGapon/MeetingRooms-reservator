@@ -1,5 +1,6 @@
 package com.nordclan.nikgapon.work_practice_1.model;
 
+import com.nordclan.nikgapon.work_practice_1.controller.MeetingDto;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 
@@ -100,8 +101,28 @@ public class MeetingEntity {
 
     }
 
+    public MeetingEntity(MeetingDto dto){
 
-/*    public boolean cheekers(Timestamp new_time){
+        this.title = dto.getTitle();
+        this.description = dto.getDescription();
+        this.creator = dto.getCreator();
+        this.room = dto.getRoom();
+        this.guests = dto.getGuests();
+        this.starttime = dto.getStarttime();
+        this.endtime = dto.getEndtime();
+    }
+
+    public MeetingEntity( String title, String description, UserEntity creator, MeetingRoomEntity room, List<UserEntity> guests, Timestamp starttime, Timestamp endtime) {
+
+        this.title = title;
+        this.description = description;
+        this.creator = creator;
+        this.room = room;
+        this.guests = guests;
+        this.starttime = starttime;
+        this.endtime = endtime;
+    }
+    /*    public boolean cheekers(Timestamp new_time){
         if (starttime.compareTo(new_time) > 0 && endtime.compareTo(new_time) < 0){
             return true;
         }
