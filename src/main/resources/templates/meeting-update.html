@@ -1,6 +1,17 @@
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+     $('select').selectize({
+         sortField: 'text'
+     });
+ });
+
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
     <title>Просмотр встречи</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="../static/css/main.css" type="text/css">
@@ -18,27 +29,43 @@
     <label for="description" style="margin-top: 10px">Описание: </label>
     <input type="text"  id="description" th:field="${meeting.description}" required="true">
 
+    <br>
     <label for="starttime" style="margin-top: 10px">Дата начала: </label>
     <input type="datetime-local"  id="starttime" th:field="${meeting.starttime}" required="true">
-
-    <label for="endtime" style="margin-top: 10px">Дата окончания</label>
+    <br>
+    <label for="endtime" style="margin-top: 10px">Дата окончания: </label>
     <input type="datetime-local"  id="endtime" th:field="${meeting.endtime}" required="true">
 
-
+    <br>
     <span th:text="'Создатель: Вы'" style="margin-top: 10px" ></span>
 
     <br>
-    <select name="selectedRoom"></select>
+    <span>Переговорка: </span>
+    <select name="selectedRoom" style="wight: 30%;">
+        <th:block th:each="room : ${rooms}">
+            <option th:if="${id != null}" th:value="${room}"
+                    th:text="${room.name}"
+                    >
+                    <!--th:selected="${meeting.meetingroom_id.contains(room)}"-->
+            </option>
+
+            <option th:if="${id == null}" th:value="${room}"
+                    th:text="${room.name}"
+
+            >
+            </option>
+        </th:block>
+    </select>
     <br>
     <span>Гости: </span>
     <select multiple="multiple" name="selectedUsers">
         <th:block th:each="user : ${users}">
-            <option th:if="${id != null}" th:value="${user.id}"
+            <option th:if="${id != null}" th:value="${user}"
                     th:text="${user.FIO} + ':' + ${user.login}"
                     th:selected="${meeting.guests.contains(user)}">
             </option>
 
-            <option th:if="${id == null}" th:value="${user.id}"
+            <option th:if="${id == null}" th:value="${user}"
                     th:text="${user.FIO} + ':' + ${user.login}"
                     >
             </option>
