@@ -35,11 +35,13 @@ public class MeetingService {
         meetingRepository.deleteById(id);
     }
 
+    @Transactional
     public MeetingEntity addRoom(MeetingDto dto) {
         final MeetingEntity meeting = new MeetingEntity(dto);
         return meetingRepository.save(meeting);
     }
 
+    @Transactional
     public MeetingEntity updateRoom(Long id, MeetingDto dto) {
         final MeetingEntity meeting = findMeeting(id);
         meeting.setTitle(dto.getTitle());

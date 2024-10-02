@@ -7,6 +7,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.Cascade;
 
+import java.util.Objects;
+
 
 @Entity
 @Table(name = "meetingroom")
@@ -58,6 +60,14 @@ public class MeetingRoomEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MeetingRoomEntity room = (MeetingRoomEntity) o;
+        return Objects.equals(id, room.id);
     }
 
     @Override

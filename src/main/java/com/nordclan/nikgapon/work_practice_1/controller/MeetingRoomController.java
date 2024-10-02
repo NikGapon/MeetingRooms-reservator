@@ -59,7 +59,7 @@ public class MeetingRoomController {
         if (bindingResult.hasErrors()) {
             model.addAttribute("errors",
                     bindingResult.getAllErrors());
-            return "update-room";
+            return "room-update";
         }
         if (id == null || id <= 0) {
             meetingRoomService.addRoom(roomDto);

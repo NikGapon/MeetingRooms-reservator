@@ -9,6 +9,8 @@
          sortField: 'text'
      });
  });
+    </script>
+    <script>
 
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
@@ -27,7 +29,7 @@
     <input type="text"  id="name" th:field="${meeting.title}" required="true">
 
     <label for="description" style="margin-top: 10px">Описание: </label>
-    <input type="text"  id="description" th:field="${meeting.description}" required="true">
+    <input type="text"  id="description" th:field="${meeting.description}" >
 
     <br>
     <label for="starttime" style="margin-top: 10px">Дата начала: </label>
@@ -41,12 +43,12 @@
 
     <br>
     <span>Переговорка: </span>
-    <select name="selectedRoom" style="wight: 30%;">
+    <select name="selectedRoom" for="room" style="wight: 30%;">
         <th:block th:each="room : ${rooms}">
             <option th:if="${id != null}" th:value="${room}"
                     th:text="${room.name}"
-                    >
-                    <!--th:selected="${meeting.meetingroom_id.contains(room)}"-->
+
+                    th:selected="${room == meeting.room}">
             </option>
 
             <option th:if="${id == null}" th:value="${room}"

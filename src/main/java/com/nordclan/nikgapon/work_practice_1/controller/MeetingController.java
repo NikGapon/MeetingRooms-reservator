@@ -53,12 +53,13 @@ public class MeetingController {
                            @ModelAttribute("meeting") MeetingDto meetingDto,
                            BindingResult bindingResult,
                            Model model) throws IOException {
-
+        System.out.println(meetingDto.getTitle() + meetingDto.getDescription() + meetingDto.getStarttime() + meetingDto.getEndtime() + meetingDto.getCreator() + meetingDto.getGuests());
         if (bindingResult.hasErrors()) {
             model.addAttribute("errors",
                     bindingResult.getAllErrors());
-            return "update-room";
+            return "meeting-update";
         }
+
         if (id == null || id <= 0) {
             meetingService.addRoom(meetingDto);
             return "redirect:/week";
