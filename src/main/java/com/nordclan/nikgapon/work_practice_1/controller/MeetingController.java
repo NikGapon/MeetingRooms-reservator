@@ -49,10 +49,12 @@ public class MeetingController {
 
     @PostMapping(value = {"/", "/{id}"})
     public String saveMeeting(@PathVariable(required = false) Long id,
-
                            @ModelAttribute("meeting") MeetingDto meetingDto,
                            BindingResult bindingResult,
-                           Model model) throws IOException {
+                           Model model, Principal principal) throws IOException {
+
+        meetingDto.setCreator(userService.findByLogin(principal.getName()));
+        meetingDto.getStarttime();
         System.out.println(meetingDto.getTitle() + meetingDto.getDescription() + meetingDto.getStarttime() + meetingDto.getEndtime() + meetingDto.getCreator() + meetingDto.getGuests());
         if (bindingResult.hasErrors()) {
             model.addAttribute("errors",

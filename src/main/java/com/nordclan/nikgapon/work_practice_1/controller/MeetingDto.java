@@ -7,6 +7,9 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 
 import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class MeetingDto {
@@ -88,7 +91,16 @@ public class MeetingDto {
     }
 
     public void setStarttime(Timestamp starttime) {
+
         this.starttime = starttime;
+    }
+    public void setStarttime(String starttime) throws ParseException {
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
+        Date parsedDate = dateFormat.parse(starttime);
+        Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
+        this.starttime = timestamp;
+        // todo На удаление
     }
 
     public Timestamp getEndtime() {

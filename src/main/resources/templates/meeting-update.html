@@ -42,8 +42,8 @@
     <span th:text="'Создатель: Вы'" style="margin-top: 10px" ></span>
 
     <br>
-    <span>Переговорка: </span>
-    <select name="selectedRoom" for="room" style="wight: 30%;">
+    <label for="room" >Переговорка: </label>
+    <select id="room"  style="wight: 30%;">
         <th:block th:each="room : ${rooms}">
             <option th:if="${id != null}" th:value="${room}"
                     th:text="${room.name}"
