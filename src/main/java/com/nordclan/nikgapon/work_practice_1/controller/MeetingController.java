@@ -54,7 +54,9 @@ public class MeetingController {
                            Model model, Principal principal) throws IOException {
 
         meetingDto.setCreator(userService.findByLogin(principal.getName()));
-        meetingDto.getStarttime();
+        //meetingDto.getStarttime();
+
+        System.out.println(meetingDto.getRoom());
         System.out.println(meetingDto.getTitle() + meetingDto.getDescription() + meetingDto.getStarttime() + meetingDto.getEndtime() + meetingDto.getCreator() + meetingDto.getGuests());
         if (bindingResult.hasErrors()) {
             model.addAttribute("errors",

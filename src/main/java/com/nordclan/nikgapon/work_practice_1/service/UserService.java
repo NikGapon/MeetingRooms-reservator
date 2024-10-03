@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -50,4 +51,13 @@ public class UserService implements UserDetailsService {
         userRepository.save(user);
     }
 
+    public UserEntity findUser(long id) {
+        final Optional<UserEntity> user = userRepository.findById(id);
+        return user.orElseThrow(() -> new UserNotFoundException(id));
+    }
+}
+class UserNotFoundException extends RuntimeException{
+    public UserNotFoundException(Long id){
+        super(String.format("USer with id [%s] ius not found", id ));
+    }
 }

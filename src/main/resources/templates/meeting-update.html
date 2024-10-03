@@ -43,15 +43,15 @@
 
     <br>
     <label for="room" >Переговорка: </label>
-    <select id="room"  style="wight: 30%;">
+    <select id="room"  th:field="*{room}" style="wight: 30%;">
         <th:block th:each="room : ${rooms}">
-            <option th:if="${id != null}" th:value="${room}"
+            <option th:if="${id != null}" th:value="${room.id}"
                     th:text="${room.name}"
 
                     th:selected="${room == meeting.room}">
             </option>
 
-            <option th:if="${id == null}" th:value="${room}"
+            <option th:if="${id == null}" th:value="${room.id}"
                     th:text="${room.name}"
 
             >
