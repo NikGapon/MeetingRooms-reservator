@@ -1,8 +1,5 @@
 package com.nordclan.nikgapon.work_practice_1.config;
-import com.nordclan.nikgapon.work_practice_1.service.MeetingRoomEntityConverter;
-import com.nordclan.nikgapon.work_practice_1.service.MeetingRoomService;
-import com.nordclan.nikgapon.work_practice_1.service.StringToTimestampConverter;
-import com.nordclan.nikgapon.work_practice_1.service.UserEntityConverter;
+import com.nordclan.nikgapon.work_practice_1.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
@@ -16,6 +13,8 @@ public class MvcConfig implements WebMvcConfigurer {
 
     @Autowired
     private MeetingRoomService meetingRoomService;
+    @Autowired
+    private UserService userService;
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -28,6 +27,6 @@ public class MvcConfig implements WebMvcConfigurer {
     public void addFormatters(FormatterRegistry registry) {
         registry.addConverter(new StringToTimestampConverter());
         registry.addConverter(new MeetingRoomEntityConverter(meetingRoomService));
-        registry.addConverter(new UserEntityConverter());
+        registry.addConverter(new UserEntityConverter(userService));
     }
 }

@@ -59,15 +59,15 @@
         </th:block>
     </select>
     <br>
-    <span>Гости: </span>
-    <select multiple="multiple" name="selectedUsers">
+    <label for="guests">Гости: </label>
+    <select id="guests" th:field="*{guests}" multiple="multiple" name="selectedUsers">
         <th:block th:each="user : ${users}">
-            <option th:if="${id != null}" th:value="${user}"
+            <option th:if="${id != null}" th:value="${user.id}"
                     th:text="${user.FIO} + ':' + ${user.login}"
                     th:selected="${meeting.guests.contains(user)}">
             </option>
 
-            <option th:if="${id == null}" th:value="${user}"
+            <option th:if="${id == null}" th:value="${user.id}"
                     th:text="${user.FIO} + ':' + ${user.login}"
                     >
             </option>
