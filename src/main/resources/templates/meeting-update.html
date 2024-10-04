@@ -80,12 +80,19 @@
                 </span>
         <span th:if="${id != null}">
                     <i  aria-hidden="true"></i> Сохранить
-                </span>
+
+
+    </span>
     </button>
-    <br>
+
+
 
 
 </form>
+
+    <a  th:if="${id != null}" class="button-5" href="#" th:href="@{/meeting/delete/{id}(id=${id})}"  th:attr="onclick=|return confirm('Удалить Встречу?')|" >Удалить</a>
+
+    <br>
     <a href="#" th:href="@{/week/}" class="button-5">Обратно к календарю</button></a>
 </div>
 </body>
