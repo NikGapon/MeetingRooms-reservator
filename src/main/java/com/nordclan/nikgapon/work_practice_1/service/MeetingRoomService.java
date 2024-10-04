@@ -33,6 +33,7 @@ public class MeetingRoomService {
 
     @Transactional
     public MeetingRoomEntity findRoom(Long id){
+
         final Optional<MeetingRoomEntity> room = meetingRoomRepository.findById(id);
         return room.orElseThrow(() -> new RoomNotFoundException(id));
 

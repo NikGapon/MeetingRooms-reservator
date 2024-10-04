@@ -8,17 +8,22 @@ import org.springframework.core.convert.converter.Converter;
 @Component
 public class MeetingRoomEntityConverter implements Converter<String, MeetingRoomEntity> {
 
+    private final MeetingRoomService meetingRoomService;
+
     @Autowired
-    private MeetingRoomService meetingRoomService;
+    public MeetingRoomEntityConverter(MeetingRoomService meetingRoomService) {
+        this.meetingRoomService = meetingRoomService;
+    }
 
     @Override
     public MeetingRoomEntity convert(String source) {
         if (source == null || source.isEmpty()) {
             return null;
         }
-        System.out.println("1111");
-        System.out.println(source);
-        System.out.println(meetingRoomService.findRoom(Long.parseLong(source)));
+        //System.out.println("1111");
+        //System.out.println(source);
+        //System.out.println(Long.parseLong(source));
+        //System.out.println(meetingRoomService.findRoom(Long.parseLong(source)));
         return meetingRoomService.findRoom(Long.parseLong(source));
     }
 }
