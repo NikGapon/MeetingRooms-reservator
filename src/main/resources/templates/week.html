@@ -9,14 +9,16 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
     <script>
         $(document).ready(function () {
-           var mh = 0;
-           $(".schedule_cell").each(function () {
-               var h_block = parseInt($(this).height());
-               if(h_block > mh) {
-                  mh = h_block;
-               };
-           });
-           $(".schedule_cell").height(mh+20);
+          $("tr").each(function () {
+            var mh = 0;
+            $(this).find(".schedule_cell").each(function () {
+              var h_block = parseInt($(this).height());
+              if (h_block > mh) {
+                mh = h_block;
+              }
+            });
+            $(this).find(".schedule_cell").height(mh + 20); // +20 для отступа
+          });
         });
     </script>
 </head>
