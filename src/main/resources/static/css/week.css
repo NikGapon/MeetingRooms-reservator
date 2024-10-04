@@ -1,7 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
 html, body {
     background-color: #cadaba;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto"   , sans-serif;
 }
 .wrapper {
   width: 300px;
@@ -11,13 +11,17 @@ html, body {
     background-color: #2F6E4E;
     padding: 10px;
     height: 100%;
-    float: left;
+
 }
 table, td, th{
   border-spacing: 0px;
   border-collapse: collapse;
-
 }
+
+th{
+text-align: center
+}
+
 
 .button-5 {
   align-items: center;
@@ -65,8 +69,11 @@ table, td, th{
 
 
 
- a {
+a {
 	padding: 2px 0;
+		outline: none;
+    	color: #fff;
+    	text-decoration: none;
 }
 
  a::after {
@@ -107,6 +114,10 @@ a {
  a:hover,
  a:focus {
 	outline: none;
+	text-decoration: none;
+			outline: none;
+        	color: #fff;
+
 }
 
 
