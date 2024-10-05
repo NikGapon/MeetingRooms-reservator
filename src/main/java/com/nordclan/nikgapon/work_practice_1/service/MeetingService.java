@@ -43,8 +43,8 @@ public class MeetingService {
         return meetingRepository.save(meeting);
     }
     @Transactional
-    public boolean isRoomOccupied(MeetingRoomEntity room, Timestamp startTime, Timestamp endTime) {
-        List<MeetingEntity> existingMeetings = meetingRepository.findByRoomAndTimeRange(room, startTime, endTime);
+    public boolean isRoomOccupied(MeetingRoomEntity room, Timestamp startTime, Timestamp endTime, Long id) {
+        List<MeetingEntity> existingMeetings = meetingRepository.findByRoomAndTimeRange(room, startTime, endTime, id);
 
         return !existingMeetings.isEmpty();
     }

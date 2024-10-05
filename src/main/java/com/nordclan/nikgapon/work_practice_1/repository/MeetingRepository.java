@@ -21,10 +21,11 @@ public interface MeetingRepository extends JpaRepository<MeetingEntity, Long> {
      //                                    @Param("starttime") Timestamp startTime,
        //                                  @Param("endtime") Timestamp endTime);
 
-    @Query("SELECT m FROM MeetingEntity m WHERE m.room = :meetingRoom AND (m.starttime < :endtime AND m.endtime > :starttime)")
+    @Query("SELECT m FROM MeetingEntity m WHERE m.room = :meetingRoom AND m.id <> :meetingId AND (m.starttime < :endtime AND m.endtime > :starttime)")
     List<MeetingEntity> findByRoomAndTimeRange(@Param("meetingRoom") MeetingRoomEntity meetingRoom,
                                                @Param("starttime") Timestamp starttime,
-                                               @Param("endtime") Timestamp endtime);
+                                               @Param("endtime") Timestamp endtime,
+                                               @Param("meetingId") Long meetingId);
 
 }
 

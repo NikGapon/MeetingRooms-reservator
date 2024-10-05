@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.security.Principal;
+import java.util.Objects;
 
 @Controller
 @RequestMapping("/meeting")
@@ -80,8 +81,8 @@ public class MeetingController {
             }}
 
 
-        boolean roomOccupied = meetingService.isRoomOccupied(meetingDto.getRoom(), meetingDto.getStarttime(), meetingDto.getEndtime());
-        if (roomOccupied) {
+        boolean roomOccupied = meetingService.isRoomOccupied(meetingDto.getRoom(), meetingDto.getStarttime(), meetingDto.getEndtime(), id == null ? -1L : id);
+        if (roomOccupied ) {
             bindingResult.rejectValue("room", "error.meeting", "Комната занята в указанное время.");
         }
 
