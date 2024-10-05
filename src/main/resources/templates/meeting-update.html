@@ -24,16 +24,19 @@
 
     <label for="name" >Название: </label>
     <input type="text"  id="name" th:field="${meeting.title}" required="true">
-
+    <h2 th:errors="*{title}" ></h2>
     <label for="description" style="margin-top: 10px">Описание: </label>
     <input type="text"  id="description" th:field="${meeting.description}" >
-
+    <h2 th:errors="*{description}" ></h2>
     <br>
     <label for="starttime" style="margin-top: 10px">Дата начала: </label>
     <input type="datetime-local"  id="starttime" th:field="${meeting.starttime}" required="true">
+
+
     <br>
     <label for="endtime" style="margin-top: 10px">Дата окончания: </label>
     <input type="datetime-local"  id="endtime" th:field="${meeting.endtime}" required="true">
+    <h2 th:errors="*{endtime}" ></h2>
 
     <br>
     <span th:text="'Создатель: Вы'" style="margin-top: 10px" ></span>
@@ -55,6 +58,7 @@
             </option>
         </th:block>
     </select>
+    <h2 th:errors="*{room}" ></h2>
     <br>
     <label for="guests">Гости: </label>
     <select id="guests" th:field="*{guests}" multiple="multiple" name="selectedUsers">

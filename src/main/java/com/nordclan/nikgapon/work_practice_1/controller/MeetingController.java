@@ -54,13 +54,43 @@ public class MeetingController {
                            Model model, Principal principal) throws IOException {
 
         meetingDto.setCreator(userService.findByLogin(principal.getName()));
-        //meetingDto.getStarttime();
 
-        System.out.println(meetingDto.getRoom());
-        System.out.println(meetingDto.getTitle() + meetingDto.getDescription() + meetingDto.getStarttime() + meetingDto.getEndtime() + meetingDto.getCreator() + meetingDto.getGuests());
-        if (bindingResult.hasErrors()) {
+        if (meetingDto.getStarttime().after(meetingDto.getEndtime())) {
+            bindingResult.rejectValue("endtime", "error.meeting", "Время начала должно быть позже времени окончания.");
+        }
+        else {
+            long durationInMillis = meetingDto.getEndtime().getTime() - meetingDto.getStarttime().getTime();
+            long durationInMinutes = durationInMillis / (60 * 1000);
+            if (durationInMinutes < 30) {
+                bindingResult.rejectValue("endtime", "error.meeting", "Встреча должна длиться минимум 30 минут.");
+            }
+            if (durationInMinutes > 24 * 60) {
+                bindingResult.rejectValue("endtime", "error.meeting", "Встреча не может длиться более 24 часов.");
+            }
+        }
+        if (meetingDto.getRoom() == null){
+            bindingResult.rejectValue("room", "error.meeting", "Необходимо выбрать переговорку");
+        }
+        if (meetingDto.getTitle() == null){
+            bindingResult.rejectValue("title", "error.meeting", "Название не должно быть пустым");
+        }
+        else{
+            if (meetingDto.getTitle().startsWith(" ")) {
+                bindingResult.rejectValue("title", "error.meeting", "Название не должно начинаться с пробела.");
+            }}
+
+
+        boolean roomOccupied = meetingService.isRoomOccupied(meetingDto.getRoom(), meetingDto.getStarttime(), meetingDto.getEndtime());
+        if (roomOccupied) {
+            bindingResult.rejectValue("room", "error.meeting", "Комната занята в указанное время.");
+        }
+
+         if (bindingResult.hasErrors()) {
             model.addAttribute("errors",
                     bindingResult.getAllErrors());
+            model.addAttribute("users", userService.findAllUsers());
+            model.addAttribute("rooms", meetingRoomService.findAllRooms());
+            bindingResult.getAllErrors();
             return "meeting-update";
         }
 
