@@ -15,10 +15,10 @@ The production practice of Nikolai Gapon. Implementation of a reservation system
 - [x] First itr for Booking ___Postponed, first the implementation of the CRUD room and admin privileges___
 - [x] First itr frontend (all rooms) __before 27.09__
 - [x] Final CRUD for Booking __before 28.09__
-- [ ] Booking overlay errors
+- [x] Booking overlay errors
 - [ ] Visibility on behalf of the guest
 - [ ] Checks for scheduled events
-- [ ] All Validation cheek 
+- [x] All Validation cheek 
 - [x] Sec itr frontend
 - [ ] BD Bake
 - [x] WiP
