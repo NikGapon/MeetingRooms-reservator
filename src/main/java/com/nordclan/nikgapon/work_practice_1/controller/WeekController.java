@@ -7,8 +7,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.temporal.TemporalAdjusters;
 import java.util.*;
 
 @Controller
@@ -28,17 +30,21 @@ public class WeekController {
         Locale locale = Locale.UK;
 
         long curentWeek;
-        if (weeknumber == null) curentWeek = 0;
-        else curentWeek = weeknumber;
+        if (weeknumber == null) {
+
+            weeknumber = 0L;
+        }
+        curentWeek = weeknumber;
         //System.out.println(curentWeek);
+
         model.addAttribute("weeknumber", curentWeek);
 
-
-        if (weeknumber == null || weeknumber == 0) {
-            calendar.setTime(new Date());
-        } else {
-            calendar.setTime(java.sql.Date.valueOf(LocalDate.now().plusDays(7 * weeknumber)));
-        }
+        calendar.setTime(java.sql.Date.valueOf(LocalDate.now().plusDays(7 * weeknumber)));
+        //if (weeknumber == null || weeknumber == 0) {
+            //calendar.setTime(new Date()); нет слов для описания того, чего мне стоила эта ошибка
+        //} else {
+        //    calendar.setTime(java.sql.Date.valueOf(LocalDate.now().plusDays(7 * weeknumber)));
+        //}
         calendar.set(Calendar.DAY_OF_WEEK, calendar.getFirstDayOfWeek());
         Map<String, String> dateforCurentWeek = new HashMap<>();
         //DateTimeFormatter datefomr = DateTimeFormatter.ofPattern("dd-MM-yyyy", Locale.ENGLISH);
@@ -62,9 +68,10 @@ public class WeekController {
             dateforCurentWeek.put(nameOfDay, datefomr.format(calendar.getTime()));
             calendar.add(Calendar.DAY_OF_WEEK, 1);
         }
+        calendar.add(Calendar.DAY_OF_WEEK, -1);
         endweektext = datefomr.format(calendar.getTime());
-        LocalDateTime endweek = LocalDateTime.ofInstant(calendar.getTime().toInstant(), calendar.getTimeZone().toZoneId());
-
+        LocalDateTime endweek = LocalDateTime.ofInstant(calendar.getTime().toInstant(), calendar.getTimeZone().toZoneId()).plusDays(1).minusMinutes(1);;
+        //System.out.println(endweektext +" "+ endweek);
         //List<MeetingEntity> tets = meetingService.findByTimeInterval(startweek.minusDays(1), endweek.plusDays(1));
         //System.out.println(startweek.toString() + endweek.toString());
         //System.out.println(tets);
@@ -82,8 +89,8 @@ public class WeekController {
             }
         }
         //System.out.println(startweektext +":"+ startweek +"  " + endweektext + ":" + endweek);
-        List<MeetingEntity> listAllMeetingsEntity = meetingService.findByTimeInterval(startweek.minusDays(0), endweek.plusDays(0)); // todo Разобраться с междневным и меж недельными занятиями, затестировать в хлам
-        listAllMeetingsEntity.forEach(elemen -> addMeetingToSchedule(elemen.getStarttime().toLocalDateTime(), elemen.getEndtime().toLocalDateTime(), elemen));
+        List<MeetingEntity> listAllMeetingsEntity = meetingService.findByTimeInterval(startweek.minusDays(2), endweek.plusDays(2));
+        listAllMeetingsEntity.forEach(elemen -> addMeetingToSchedule(elemen.getStarttime().toLocalDateTime(), elemen.getEndtime().toLocalDateTime(), elemen, startweek, endweek));
 
 
 
@@ -103,15 +110,30 @@ public class WeekController {
 
 
 
-    public void addMeetingToSchedule(LocalDateTime start, LocalDateTime end, MeetingEntity meeting) {
+    public void addMeetingToSchedule(LocalDateTime start, LocalDateTime end, MeetingEntity meeting,LocalDateTime startOfWeek, LocalDateTime endOfWeek) {
 
-        for (LocalDateTime time = start; time.isBefore(end); time = time.plusMinutes(30)) {
+        /*if (end.isBefore(startOfWeek) || start.isAfter(endOfWeek)) {
+            return;
+        }
+*/
+        //endOfWeek = endOfWeek.plusDays(1).minusMinutes(1);
+        LocalDateTime actualStart = start.isBefore(startOfWeek) ? startOfWeek : start;
+
+        LocalDateTime actualEnd = end.isAfter(endOfWeek) ? endOfWeek : end;
+
+
+
+        //System.out.println(meeting.getTitle() + "-       " + startOfWeek + " " + start + "  "+actualStart + "jRYJYMXFYBT" + actualEnd);
+        //System.out.println(startOfWeek + " - " + endOfWeek);
+        for (LocalDateTime time = actualStart; time.isBefore(actualEnd); time = time.plusMinutes(30)) {
+            //System.out.println("Сюда");
             int dayOfWeek = time.getDayOfWeek().getValue() - 1;
             int halfHourIndex = (time.getHour() * 2) + (time.getMinute() / 30);
+
+            //System.out.println("День и Время " + dayOfWeek + " : " + halfHourIndex);
 
             if (dayOfWeek >= 0 && dayOfWeek < 7 && halfHourIndex >= 0 && halfHourIndex < 48) {
                 schedule[dayOfWeek][halfHourIndex].add(meeting);
             }
         }
-    }
-}
+}}
