@@ -13,7 +13,7 @@
     <br>
 <span th:text="'Название: ' + ${meeting.title}" > </span>
 <br>
-<span th:text="'Создатель: ' + ${meeting.creator.FIO}" > </span>
+<span th:text="'Создатель: ' + ${meeting.creator.FIO} + ':'+ ${meeting.creator.login}"> </span>
 <br>
 <span th:text="'Переговорка: ' + ${meeting.room.name}"></span>
 <br>
@@ -24,7 +24,7 @@
     <span >Приглашенные сотрудники:</span>
     <br>
     <div  th:each="guest : ${meeting.guests}">
-        <span th:text="${guest.FIO}"></span>
+        <span th:text="${guest.FIO} + ':' + ${guest.login}"></span>
     </div>
 </div>
 </div>

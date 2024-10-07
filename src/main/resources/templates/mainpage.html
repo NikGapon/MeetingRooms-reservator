@@ -9,7 +9,7 @@
 <div class="wrapper">
 <h1><p th:text="|Привет, ${name}!|" /></h1>
     <a href="#" th:href="@{/week/}" class="button-5">Календарь переговорок</button></a>
-    <a href="#" th:href="@{/}" class="button-5">Ваши встречи</button></a>
+    <a href="#" th:href="@{/invitations}" class="button-5">Ваши встречи</button></a>
     <a href="#" th:href="@{/logout}" class="button-5">Выйти</button></a>
     <div sec:authorize="hasRole('ADMIN')" >
         <h1>Зона админа</h1>

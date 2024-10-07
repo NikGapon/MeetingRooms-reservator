@@ -7,6 +7,10 @@ html, body {
   width: 300px;
   margin: 12% auto;
 }
+.wrapper2 {
+  width: 685px;
+  margin: 5% auto;
+}
 .button-5 {
   align-items: center;
   background-clip: padding-box;

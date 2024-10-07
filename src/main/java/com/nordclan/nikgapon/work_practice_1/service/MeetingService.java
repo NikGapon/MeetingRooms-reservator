@@ -62,6 +62,11 @@ public class MeetingService {
         return meetingRepository.save(meeting);
 
     }
+
+    @Transactional
+    public List<MeetingEntity> findAllInvitations(Long id){
+        return meetingRepository.findAllMeetingsByGuestUserId(id);
+    }
 }
 
 class MeetingNotFoundException extends RuntimeException{

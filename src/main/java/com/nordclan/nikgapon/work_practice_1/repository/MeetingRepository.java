@@ -27,6 +27,8 @@ public interface MeetingRepository extends JpaRepository<MeetingEntity, Long> {
                                                @Param("endtime") Timestamp endtime,
                                                @Param("meetingId") Long meetingId);
 
+    @Query("SELECT m FROM MeetingEntity m JOIN m.guests g WHERE g.id = :userId ORDER BY m.starttime ASC")
+    List<MeetingEntity> findAllMeetingsByGuestUserId(@Param("userId") Long userId);
 }
 
 
