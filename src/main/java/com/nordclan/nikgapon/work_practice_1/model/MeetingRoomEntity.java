@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.Cascade;
 
+import java.util.List;
 import java.util.Objects;
 
 
@@ -24,6 +25,11 @@ public class MeetingRoomEntity {
 
     @Size(min = 0, max = 516)
     private String description;
+
+
+    @OneToMany(mappedBy = "room", cascade={CascadeType.ALL},  orphanRemoval = true)
+    //@JoinColumn(name = "meeting_id")
+    private List<MeetingEntity> meeting;
 
     public MeetingRoomEntity(){
     }
@@ -61,6 +67,10 @@ public class MeetingRoomEntity {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public List<MeetingEntity> getMeeting() { return meeting; }
+
+    public void setMeeting(List<MeetingEntity> meeting) { this.meeting = meeting; }
 
     @Override
     public boolean equals(Object o) {
