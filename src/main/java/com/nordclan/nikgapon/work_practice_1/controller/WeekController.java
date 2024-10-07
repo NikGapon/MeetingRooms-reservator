@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
 import java.util.*;
 
@@ -103,9 +104,8 @@ public class WeekController {
     }
 
     @PostMapping(value = {"/", "", "/{weeknumber}"})
-    public String toDate(@RequestParam("date") Date date){
-        System.out.println(date); ///todo Доделать
-        return "redirect:/week/";
+    public String toDate(@RequestParam("date") String date){
+        return "redirect:/week/" + (Math.floorDiv(java.time.temporal.ChronoUnit.DAYS.between(LocalDate.now(), LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd"))), 7));
     }
 
 
