@@ -20,8 +20,8 @@
 window.addEventListener('load', function() {
     const cells = document.querySelectorAll('.mini_cell');
     cells.forEach(function(cell) {
-        const text = cell.textContent;
-        const color = stringToHexColor(text);
+        const roomName = cell.getAttribute('data-room');  // Получаем значение room.name
+        const color = stringToHexColor(roomName);
         cell.style.backgroundColor = color;
     });
 });
@@ -63,7 +63,7 @@ window.addEventListener('load', function() {
             <td th:each="daySchedule : ${schedule}" style="vertical-align: top;"
 
             >
-                    <div class="schedule_cell" th:if="${!#lists.isEmpty(daySchedule[intervalIndex])}" ><div class="mini_cell" th:each="meeting : ${daySchedule[intervalIndex]}"><a
+                    <div class="schedule_cell" th:if="${!#lists.isEmpty(daySchedule[intervalIndex])}" ><div class="mini_cell" th:data-room="${meeting.room.name}" th:each="meeting : ${daySchedule[intervalIndex]}"><a
                                                                                     th:href="@{'/meeting/' + ${meeting.id}}"
                                                                                     th:text="${meeting.room.name} + ':' + ${meeting.title}" >  </a></div>
                     </div>
