@@ -83,9 +83,9 @@ public class WeekController {
         model.addAttribute("weekday", dateforCurentWeek);
 
 
-        schedule = new ArrayList[7][48];
+        schedule = new ArrayList[7][24];
         for (int i = 0; i < 7; i++) { // day
-            for (int j = 0; j < 48; j++) { // half-hours interval
+            for (int j = 0; j < 24; j++) { // half-hours interval
                 schedule[i][j] = new ArrayList<>();
             }
         }
@@ -125,14 +125,14 @@ public class WeekController {
 
         //System.out.println(meeting.getTitle() + "-       " + startOfWeek + " " + start + "  "+actualStart + "jRYJYMXFYBT" + actualEnd);
         //System.out.println(startOfWeek + " - " + endOfWeek);
-        for (LocalDateTime time = actualStart; time.isBefore(actualEnd); time = time.plusMinutes(30)) {
+        for (LocalDateTime time = actualStart; time.isBefore(actualEnd); time = time.plusMinutes(60)) {
             //System.out.println("Сюда");
             int dayOfWeek = time.getDayOfWeek().getValue() - 1;
-            int halfHourIndex = (time.getHour() * 2) + (time.getMinute() / 30);
-
+            //int halfHourIndex = (time.getHour() * 2) + (time.getMinute() / 30);
+            int halfHourIndex = (time.getHour());
             //System.out.println("День и Время " + dayOfWeek + " : " + halfHourIndex);
 
-            if (dayOfWeek >= 0 && dayOfWeek < 7 && halfHourIndex >= 0 && halfHourIndex < 48) {
+            if (dayOfWeek >= 0 && dayOfWeek < 7 && halfHourIndex >= 0 && halfHourIndex < 24) {
                 schedule[dayOfWeek][halfHourIndex].add(meeting);
             }
         }

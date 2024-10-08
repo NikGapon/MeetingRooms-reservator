@@ -53,8 +53,8 @@
         </thead>
 
         <tbody>
-        <tr th:each="intervalIndex : ${#numbers.sequence(0, 47)}">
-            <td th:text="${intervalIndex % 2 == 0 ? intervalIndex / 2  + ':00' : ''}" style="vertical-align: top;"></td>
+        <tr th:each="intervalIndex : ${#numbers.sequence(0, 23)}">
+            <td th:text="${intervalIndex  + ':00'}" style="vertical-align: top;"></td>
             <td th:each="daySchedule : ${schedule}"
                 th:attr="style=${intervalIndex > 0 and daySchedule[intervalIndex] == daySchedule[intervalIndex-1]} ? 'padding-top: 0px; padding-bottom: 0px;' : 'padding-bottom: 0px; padding-top: 4px;'"
             >
