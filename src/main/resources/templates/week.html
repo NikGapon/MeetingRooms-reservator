@@ -35,16 +35,15 @@ window.addEventListener('load', function() {
 <form action="#" th:action="@{/week}" class="back_col_class" method="post">
     <div style="padding: 0; margin: 0;">
         <label for="date" style="padding: 0; margin: 0; display:none;"></label>
-        <input type="date" id="date" name="date" class="button-6">
+        <input type="date" id="date" name="date" class="button-6" onblur="this.form.submit()">
     </div>
-    <button type="submit" class="button-6">Перейти</button>
 </form>
 <a href="#" th:href="@{/meeting/}" class="button-5">Создать встречу</button></a>
 <div>
     <a href="#" th:href="@{|/week/${weeknumber - 1}|}" class="button-5" style="display: inline-block;">←Назад</button></a>
     <form th:action="@{|/week/${weeknumber}|}" id="select_room" method="GET" style="display: inline-block; ">
         <label for="room" style="display: none;"></label>
-        <select id="room" name="room" class="button-5">
+        <select id="room" name="room" class="button-5" onchange="this.form.submit()">
             <th:block th:each="room : ${rooms}">
                 <option th:value="${room.id}"
                         th:text="${room.name}"  th:selected="${room.id == selected_room}">
@@ -54,7 +53,6 @@ window.addEventListener('load', function() {
                 Все комнаты
             </option>
         </select>
-        <button class="button-5" type="submit">Go</button>
     </form>
     <a href="#" th:href="@{|/week/${weeknumber + 1}|}" class="button-5" style="display: inline-block;">Вперед→</button></a>
 </div>
