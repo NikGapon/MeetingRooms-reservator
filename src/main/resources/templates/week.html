@@ -47,11 +47,10 @@ window.addEventListener('load', function() {
         <select id="room" name="room" class="button-5">
             <th:block th:each="room : ${rooms}">
                 <option th:value="${room.id}"
-                        th:text="${room.name}" >
+                        th:text="${room.name}"  th:selected="${room.id == selected_room}">
                 </option>
-
             </th:block>
-            <option value="-1" selected >
+            <option value="-1" th:selected="${-1 == selected_room}">
                 Все комнаты
             </option>
         </select>

@@ -105,6 +105,7 @@ public class WeekController {
        /* for (int i = 0; i < schedule.length; i++) {
             System.out.println(Arrays.toString(schedule[i]));
         }*/
+        model.addAttribute("selected_room", room_id != null ? Integer.parseInt(room_id) : -1);
         model.addAttribute("rooms", meetingRoomService.findAllRooms());
         model.addAttribute("schedule", schedule);
         return "week";
