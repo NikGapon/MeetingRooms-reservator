@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.math.BigInteger;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -15,8 +16,12 @@ public interface MeetingRepository extends JpaRepository<MeetingEntity, Long> {
     @Query(value = "SELECT * FROM public.meeting WHERE starttime > ?1 AND endtime < ?2",nativeQuery = true)
     List<MeetingEntity> findAllByTimeInterval(LocalDateTime startDate, LocalDateTime endDate);
 
-    @Query(value = "SELECT * FROM public.meeting WHERE starttime > ?1 AND endtime < ?2 AND meeting_id == ?3",nativeQuery = true)
-    List<MeetingEntity> findByTimeInterval(LocalDateTime startDate, LocalDateTime endDate, Long id);
+    //@Query(value = "SELECT * FROM public.meeting WHERE starttime > ?1 AND endtime < ?2 AND meeting_id = ?3",nativeQuery = true)
+    //List<MeetingEntity> findByTimeInterval(@Param("starttime")LocalDateTime startDate,@Param("endtime") LocalDateTime endDate, @Param("room_id") Long room_id);
+    @Query("SELECT m FROM MeetingEntity m WHERE m.starttime > :starttime AND m.endtime < :endtime AND m.room.id = :room_id")
+    List<MeetingEntity> findByTimeInterval(@Param("starttime") Timestamp startDate,
+                                           @Param("endtime") Timestamp endDate,
+                                           @Param("room_id") Long room_id);
 
     //@Query(value = "SELECT m FROM meeting m WHERE m.meetingroom_id = :meetingroom_id AND (m.starttime < :endtime AND m.endtime > :starttime)")
     //List<MeetingEntity> findByRoomAndTimeRange(@Param("meetingroom_id") MeetingRoomEntity meetingroom_id,

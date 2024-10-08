@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigInteger;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -42,7 +44,7 @@ public class WeekController {
 
         model.addAttribute("weeknumber", curentWeek);
 
-        calendar.setTime(java.sql.Date.valueOf(LocalDate.now().plusDays(7 * weeknumber)));
+        calendar.setTime(Date.valueOf(LocalDate.now().plusDays(7 * weeknumber)));
         //if (weeknumber == null || weeknumber == 0) {
             //calendar.setTime(new Date()); нет слов для описания того, чего мне стоила эта ошибка
         //} else {
@@ -92,7 +94,7 @@ public class WeekController {
             }
         }
         //System.out.println(startweektext +":"+ startweek +"  " + endweektext + ":" + endweek);
-        List<MeetingEntity> listAllMeetingsEntity = room_id != null ? meetingService.findByTimeInterval(startweek.minusDays(2), endweek.plusDays(2),  Long.parseLong(room_id)) : meetingService.findByTimeInterval(startweek.minusDays(2), endweek.plusDays(2));
+        List<MeetingEntity> listAllMeetingsEntity = room_id != null ? meetingService.findByTimeInterval(startweek.minusDays(2), endweek.plusDays(2), Long.parseLong(room_id)) : meetingService.findByTimeInterval(startweek.minusDays(2), endweek.plusDays(2));
         listAllMeetingsEntity.forEach(elemen -> addMeetingToSchedule(elemen.getStarttime().toLocalDateTime(), elemen.getEndtime().toLocalDateTime(), elemen, startweek, endweek));
 
 

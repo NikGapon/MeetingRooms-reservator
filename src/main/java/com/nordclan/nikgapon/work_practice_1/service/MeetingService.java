@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -27,9 +29,9 @@ public class MeetingService {
         return meetingRepository.findAllByTimeInterval(starttime, endtime);
     }
 
-    @Transactional(readOnly = true)
-    public List<MeetingEntity> findByTimeInterval(LocalDateTime starttime, LocalDateTime endtime, Long id) {
-        return meetingRepository.findByTimeInterval(starttime, endtime, id);
+    @Transactional
+    public List<MeetingEntity> findByTimeInterval(LocalDateTime starttime, LocalDateTime endtime, Long room_id) {
+        return meetingRepository.findByTimeInterval(Timestamp.valueOf(starttime), Timestamp.valueOf(endtime), room_id);
     }
 
     @Transactional
