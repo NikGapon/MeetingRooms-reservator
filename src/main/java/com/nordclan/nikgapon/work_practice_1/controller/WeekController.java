@@ -26,7 +26,9 @@ public class WeekController {
 
 
     @GetMapping(value = {"/", "", "/{weeknumber}"})
-    public String week(@PathVariable(required = false) Long weeknumber, Model model) {
+    public String week(@PathVariable(required = false) Long weeknumber, Model model,
+                       @RequestParam(value = "id", required = false) String room_id) {
+
         Calendar calendar = new GregorianCalendar();
         Locale locale = Locale.UK;
 
@@ -90,7 +92,7 @@ public class WeekController {
             }
         }
         //System.out.println(startweektext +":"+ startweek +"  " + endweektext + ":" + endweek);
-        List<MeetingEntity> listAllMeetingsEntity = meetingService.findByTimeInterval(startweek.minusDays(2), endweek.plusDays(2));
+        List<MeetingEntity> listAllMeetingsEntity = room_id != null ? meetingService.findByTimeInterval(startweek.minusDays(2), endweek.plusDays(2),  Long.parseLong(room_id)) : meetingService.findByTimeInterval(startweek.minusDays(2), endweek.plusDays(2));
         listAllMeetingsEntity.forEach(elemen -> addMeetingToSchedule(elemen.getStarttime().toLocalDateTime(), elemen.getEndtime().toLocalDateTime(), elemen, startweek, endweek));
 
 

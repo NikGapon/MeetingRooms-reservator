@@ -17,13 +17,19 @@ import java.util.Optional;
 public class MeetingService {
     @Autowired
     private final MeetingRepository meetingRepository;
-
     public MeetingService(MeetingRepository meetingRepository) {
         this.meetingRepository = meetingRepository;
     }
+
+
     @Transactional(readOnly = true)
     public List<MeetingEntity> findByTimeInterval(LocalDateTime starttime, LocalDateTime endtime) {
-        return meetingRepository.findByTimeInterval(starttime, endtime);
+        return meetingRepository.findAllByTimeInterval(starttime, endtime);
+    }
+
+    @Transactional(readOnly = true)
+    public List<MeetingEntity> findByTimeInterval(LocalDateTime starttime, LocalDateTime endtime, Long id) {
+        return meetingRepository.findByTimeInterval(starttime, endtime, id);
     }
 
     @Transactional
