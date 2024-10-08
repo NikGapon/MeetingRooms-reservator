@@ -1,6 +1,7 @@
 package com.nordclan.nikgapon.work_practice_1.controller;
 
 import com.nordclan.nikgapon.work_practice_1.model.MeetingEntity;
+import com.nordclan.nikgapon.work_practice_1.service.MeetingRoomService;
 import com.nordclan.nikgapon.work_practice_1.service.MeetingService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,15 +22,17 @@ import java.util.*;
 public class WeekController {
     private final MeetingService meetingService;
     private List<MeetingEntity>[][] schedule;
+    private final MeetingRoomService meetingRoomService;
 
-    public WeekController(MeetingService meetingService) {
+    public WeekController(MeetingService meetingService, MeetingRoomService meetingRoomService) {
         this.meetingService = meetingService;
+        this.meetingRoomService = meetingRoomService;
     }
 
 
     @GetMapping(value = {"/", "", "/{weeknumber}"})
     public String week(@PathVariable(required = false) Long weeknumber, Model model,
-                       @RequestParam(value = "id", required = false) String room_id) {
+                       @RequestParam(value = "room", required = false) String room_id) {
 
         Calendar calendar = new GregorianCalendar();
         Locale locale = Locale.UK;
@@ -102,7 +105,7 @@ public class WeekController {
        /* for (int i = 0; i < schedule.length; i++) {
             System.out.println(Arrays.toString(schedule[i]));
         }*/
-
+        model.addAttribute("rooms", meetingRoomService.findAllRooms());
         model.addAttribute("schedule", schedule);
         return "week";
     }
