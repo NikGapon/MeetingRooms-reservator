@@ -42,14 +42,18 @@ window.addEventListener('load', function() {
 <a href="#" th:href="@{/meeting/}" class="button-5">Создать встречу</button></a>
 <div>
     <a href="#" th:href="@{|/week/${weeknumber - 1}|}" class="button-5" style="display: inline-block;">←Назад</button></a>
-    <form th:action="@{|/week/${weeknumber}|}" id="select_room" method="GET" style="display: inline-block;">
+    <form th:action="@{|/week/${weeknumber}|}" id="select_room" method="GET" style="display: inline-block; ">
         <label for="room" style="display: none;"></label>
         <select id="room" name="room" class="button-5">
             <th:block th:each="room : ${rooms}">
                 <option th:value="${room.id}"
                         th:text="${room.name}" >
                 </option>
+
             </th:block>
+            <option value="-1" selected >
+                Все комнаты
+            </option>
         </select>
         <button class="button-5" type="submit">Go</button>
     </form>

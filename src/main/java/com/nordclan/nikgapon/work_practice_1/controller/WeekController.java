@@ -97,7 +97,7 @@ public class WeekController {
             }
         }
         //System.out.println(startweektext +":"+ startweek +"  " + endweektext + ":" + endweek);
-        List<MeetingEntity> listAllMeetingsEntity = room_id != null ? meetingService.findByTimeInterval(startweek.minusDays(2), endweek.plusDays(2), Long.parseLong(room_id)) : meetingService.findByTimeInterval(startweek.minusDays(2), endweek.plusDays(2));
+        List<MeetingEntity> listAllMeetingsEntity = room_id != null ? Integer.parseInt(room_id) > 0 ? meetingService.findByTimeInterval(startweek.minusDays(2), endweek.plusDays(2), Long.parseLong(room_id)) :  meetingService.findByTimeInterval(startweek.minusDays(2), endweek.plusDays(2)) : meetingService.findByTimeInterval(startweek.minusDays(2), endweek.plusDays(2));
         listAllMeetingsEntity.forEach(elemen -> addMeetingToSchedule(elemen.getStarttime().toLocalDateTime(), elemen.getEndtime().toLocalDateTime(), elemen, startweek, endweek));
 
 
