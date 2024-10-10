@@ -93,12 +93,12 @@ function hexToDecimal(hex) {
             if (parseInt(n.toString()[5]) < 3) {
                 drawDiamond(40, 40, 8, 8);
                 drawDiamond(60, 40, 8, 8);
-            } else if (parseInt(n.toString()[5]) > 3 && parseInt(n.toString()[5]) < 6) {
-                drawEye(50, 40, 7);
+            } else if (parseInt(n.toString()[5]) > 3 && parseInt(n.toString()[5]) < 7) {
+                drawEye(50, 42, 7);
 
             } else {
-                drawEye(35, 40, 5);
-                drawEye(65, 40, 5);
+                drawEye(37, 40, 5);
+                drawEye(63, 40, 5);
             }
 
 
