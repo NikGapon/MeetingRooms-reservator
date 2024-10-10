@@ -100,8 +100,8 @@ function hexToDecimal(hex) {
             } else if (parseInt(n.toString()[5]) > 6) {
                 drawEye(50, 40, 10);
             } else {
-                drawEye(35, 40,4);
-                drawEye(65, 40, 4);
+                drawEye(35, 40, 5);
+                drawEye(65, 40, 5);
             }
 
 
@@ -124,7 +124,7 @@ function hexToDecimal(hex) {
             if (parseInt(n.toString()[8]) < 4) {
                     drawCylinder(40, 10, 20, 15);
              } else if (parseInt(n.toString()[8]) > 7) {
-                    drawConeHat(50, 10, 20, 30);
+                    drawConeHat(50, 3, 20, 30);
                 }
 
 
