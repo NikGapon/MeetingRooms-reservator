@@ -20,12 +20,11 @@ function hexToDecimal(hex) {
 
 (async function() {
 
-    let canvas = document.createElement("canvas");
+    let canvas = document.getElementById("avatar_gen");
     canvas.width = 100;
     canvas.height = 100;
     let ctx = canvas.getContext("2d");
 
-    document.body.appendChild(canvas);
 
     async function generateAvatar(name) {
         let m = [
@@ -95,10 +94,8 @@ function hexToDecimal(hex) {
                 drawDiamond(40, 40, 8, 8);
                 drawDiamond(60, 40, 8, 8);
             } else if (parseInt(n.toString()[5]) > 3 && parseInt(n.toString()[5]) < 6) {
-                drawTriangle(40, 40, 8);
-                drawTriangle(60, 40, 8);
-            } else if (parseInt(n.toString()[5]) > 6) {
-                drawEye(50, 40, 10);
+                drawEye(50, 40, 7);
+
             } else {
                 drawEye(35, 40, 5);
                 drawEye(65, 40, 5);
@@ -124,7 +121,7 @@ function hexToDecimal(hex) {
             if (parseInt(n.toString()[8]) < 4) {
                     drawCylinder(40, 10, 20, 15);
              } else if (parseInt(n.toString()[8]) > 7) {
-                    drawConeHat(50, 3, 20, 30);
+                    drawConeHat(50, 5, 20, 25);
                 }
 
 
@@ -147,18 +144,12 @@ function hexToDecimal(hex) {
                 ctx.closePath();
                 ctx.fill();
             }
-            function drawTriangle(x, y, size) {
+            function drawEye(x, y, radius) {
                 ctx.beginPath();
-                ctx.moveTo(x, y - size / 2);
-                ctx.lineTo(x + size / 2, y + size / 2);
-                ctx.lineTo(x - size / 2, y + size / 2);
+                ctx.arc(x, y, radius, 0, Math.PI * 2, true);
                 ctx.closePath();
                 ctx.fill();
-            }
-            function drawEye(x, y, radius) {
-                        ctx.beginPath();
-                ctx.arc(x, y, radius, 0, Math.PI * 2, true);
-                ctx.fill();
+                ctx.stroke();
             }
             function drawCylinder(x, y, width, height) {
                 ctx.beginPath();

@@ -9,7 +9,8 @@
 </head>
 <body>
 <div class="wrapper">
-<h1><p th:text="|Привет, ${name}!|" /></h1>
+    <canvas id="avatar_gen" style="  border: 2px solid; border-radius: .5rem; border-color: #44944A;"></canvas>
+<h1 th:text="|Привет, ${name}!|"> </h1>
     <script>
         window.nameForAvatar ='[(${name})]';
     </script>
