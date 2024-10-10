@@ -68,4 +68,5 @@ async function sha256(message) {
 
     // Generate avatar immediately on page load using nameForAvatar
     generateAvatar(nameForAvatar);
+
 })();
