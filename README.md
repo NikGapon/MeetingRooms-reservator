@@ -1,25 +1,22 @@
-The production practice of Nikolai Gapon. Implementation of a reservation system for negotiations. Requires Java 17, Java Spring 3.3.3, Postgres.  WiP
+# Booking meeting rooms
+## Backend Practice Assignment
+Made as part of a practice at NordClan
 
 
-### Little Road Map for work
+## Project Overview
+This project involves developing a **Booking System for Meeting Rooms**. It serves as a practice assignment to apply backend development skills in a real-world scenario.
 
+## Tech Stack
+- **Java 17**
+- **Gradle**
+- **Spring Framework**:
+    - Spring Boot
+    - Spring MVC
+    - Spring Data
+    - Spring Web
+- **Hibernate**
+- **PostgreSQL 17**
+- **Thymeleaf**
+- **HTML, CSS, Bootstrap, Select2**
+- **JavaScript**
 
-- [x] AllModel  
-- [x] Mapping  
-- [x] password_hash
-- [x] Test: login and session ___Before 21.09___
-- [x] Final connect css ___Before 21.09___
-- [x] Final connect to db ___Before 21.09___
-- [x] CRUD for rooms, admin privileges ___Preferably on weekends___
-- [x] Important Controllers ___Postponed___
-- [x] First itr for Booking ___Postponed, first the implementation of the CRUD room and admin privileges___
-- [x] First itr frontend (all rooms) __before 27.09__
-- [x] Final CRUD for Booking __before 28.09__
-- [x] Booking overlay errors
-- [x] Visibility on behalf of the guest
-- [x] Checks for scheduled events
-- [x] All Validation cheek 
-- [x] Sec itr frontend
-- [ ] BD Bake
-- [x] WiP
-# Wip
