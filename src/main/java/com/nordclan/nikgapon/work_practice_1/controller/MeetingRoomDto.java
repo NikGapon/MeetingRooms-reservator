@@ -14,8 +14,6 @@ public class MeetingRoomDto {
         this.description = meetingRoomEntity.getDescription();
     }
 
-
-
     public Long getId() {
         return id;
     }

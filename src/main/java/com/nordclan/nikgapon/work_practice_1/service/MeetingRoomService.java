@@ -12,13 +12,13 @@ import java.util.Optional;
 
 @Service
 public class MeetingRoomService {
+
     @Autowired
     private final MeetingRoomRepository meetingRoomRepository;
 
     public MeetingRoomService(MeetingRoomRepository meetingRoomRepository) {
         this.meetingRoomRepository = meetingRoomRepository;
     }
-
 
     @Transactional(readOnly = true)
     public List<MeetingRoomEntity> findAllRooms() {
