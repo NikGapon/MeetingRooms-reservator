@@ -5,11 +5,9 @@ import com.nordclan.nikgapon.work_practice_1.controller.MeetingRoomDto;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import org.hibernate.annotations.Cascade;
 
 import java.util.List;
 import java.util.Objects;
-
 
 @Entity
 @Table(name = "meetingroom")
@@ -26,13 +24,10 @@ public class MeetingRoomEntity {
     @Size(min = 0, max = 516)
     private String description;
 
-
     @OneToMany(mappedBy = "room", cascade={CascadeType.ALL},  orphanRemoval = true)
-    //@JoinColumn(name = "meeting_id")
     private List<MeetingEntity> meeting;
 
-    public MeetingRoomEntity(){
-    }
+    public MeetingRoomEntity(){}
 
     public MeetingRoomEntity(String name){
         this.name = name;
@@ -86,8 +81,6 @@ public class MeetingRoomEntity {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-
                 '}';
     }
-
 }

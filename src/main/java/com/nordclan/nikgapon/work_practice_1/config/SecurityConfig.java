@@ -26,16 +26,13 @@ public class SecurityConfig {
                                 .anyRequest().authenticated()
 
                 )
-
                 .formLogin(form -> form
                         .loginPage("/login")
                         .failureUrl("/login?error=true")
                         .defaultSuccessUrl("/", true)
                         .permitAll()
                 )
-                //.logout(logout -> logout.permitAll());
         .logout((logout) -> logout
-                //.logoutSuccessUrl("/")
                 .logoutUrl("/logout")
                 .deleteCookies("JSESSIONID")
                 .invalidateHttpSession(true)
@@ -50,17 +47,10 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    /*@Bean
-    public UserDetailsService userDetailsService() {
-        return new UserService();
-    }*/
-
-
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
             throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
-
 }
 

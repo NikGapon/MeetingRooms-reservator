@@ -6,10 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-
 
 @Controller
 @RequestMapping("/admin/rooms")
@@ -30,6 +28,7 @@ public class MeetingRoomController {
                 .toList());
         return "rooms";
     }
+
     @GetMapping(value = {"/room-update", "/room-update/{id}"})
     public String updateRoom(@PathVariable(required = false) Long id,
                          Model model){
@@ -44,14 +43,13 @@ public class MeetingRoomController {
 
     @GetMapping("/delete/{id}")
     public String deleteRoom(@PathVariable Long id) {
-            meetingRoomService.deleteRoom(id);
+        meetingRoomService.deleteRoom(id);
 
         return "redirect:/admin/rooms";
     }
 
     @PostMapping(value = {"/", "/{id}"})
     public String saveRoom(@PathVariable(required = false) Long id,
-
                            @ModelAttribute("room") MeetingRoomDto roomDto,
                            BindingResult bindingResult,
                            Model model) throws IOException {

@@ -30,10 +30,7 @@ public class UserEntity {
     @Size(min = 5, max = 128)
     private String FIO;
 
-
-
-    public UserEntity() {
-    }
+    public UserEntity() {}
 
     public UserEntity(String login, String password) {
         this(login, password, UserRole.USER);

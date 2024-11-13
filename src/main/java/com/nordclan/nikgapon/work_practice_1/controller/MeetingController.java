@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.security.Principal;
-import java.util.Objects;
 
 @Controller
 @RequestMapping("/meeting")
@@ -24,6 +23,7 @@ public class MeetingController {
         this.userService = userService;
         this.meetingRoomService = meetingRoomService;
     }
+
     @GetMapping(value = {"/", "/{id}"})
     public String updateRoom(@PathVariable(required = false) Long id,
                              Model model, Principal principal){
@@ -55,7 +55,6 @@ public class MeetingController {
                            Model model, Principal principal) throws IOException {
 
         meetingDto.setCreator(userService.findByLogin(principal.getName()));
-
         if (meetingDto.getStarttime().after(meetingDto.getEndtime())) {
             bindingResult.rejectValue("endtime", "error.meeting", "Время начала должно быть позже времени окончания.");
         }

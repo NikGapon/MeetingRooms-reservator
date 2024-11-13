@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserEntityConverter implements Converter<String, UserEntity> {
 
-
     private final UserService userService;
 
     @Autowired
@@ -18,12 +17,8 @@ public class UserEntityConverter implements Converter<String, UserEntity> {
 
     @Override
     public UserEntity convert(String source) {
-        if (source == null || source.isEmpty()) {
-            return null;
-        }
-//        System.out.println("Выводи их всех");
-//        System.out.println(source);
-//        System.out.println(userService.findUser(Long.parseLong(source)));
+        if (source.isEmpty()) return null;
+
         return userService.findUser(Long.parseLong(source));
     }
 }

@@ -14,14 +14,9 @@ public class StringToTimestampConverter implements Converter<String, Timestamp> 
 
     @Override
     public Timestamp convert(String source) {
-        if (source == null || source.isEmpty()) {
-            return null;
-        }
-        //System.out.println(source);
-        // String ot LocalDateTime
-        LocalDateTime localDateTime = LocalDateTime.parse(source, FORMATTER);
+        if (source.isEmpty()) return null;
 
-        // LocalDateTime to Timestamp
+        LocalDateTime localDateTime = LocalDateTime.parse(source, FORMATTER);
         return Timestamp.valueOf(localDateTime);
     }
 }

@@ -17,13 +17,8 @@ public class MeetingRoomEntityConverter implements Converter<String, MeetingRoom
 
     @Override
     public MeetingRoomEntity convert(String source) {
-        if (source == null || source.isEmpty()) {
-            return null;
-        }
-        //System.out.println("1111");
-        //System.out.println(source);
-        //System.out.println(Long.parseLong(source));
-        //System.out.println(meetingRoomService.findRoom(Long.parseLong(source)));
+        if (source.isEmpty()) return null;
+
         return meetingRoomService.findRoom(Long.parseLong(source));
     }
 }

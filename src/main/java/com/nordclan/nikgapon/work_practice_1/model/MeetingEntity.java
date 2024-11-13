@@ -7,7 +7,6 @@ import jakarta.validation.constraints.Size;
 import java.sql.Timestamp;
 import java.util.List;
 
-
 @Entity
 @Table(name = "meeting")
 public class MeetingEntity {
@@ -32,7 +31,6 @@ public class MeetingEntity {
     @ManyToMany
     @JoinTable(name= "guest", joinColumns = { @JoinColumn(name = "meeting_id") },
             inverseJoinColumns = { @JoinColumn(name = "user_id")})
-
     private List<UserEntity> guests;
 
     private Timestamp starttime;
@@ -41,7 +39,6 @@ public class MeetingEntity {
     public Long getId() {
         return id;
     }
-
 
     public String getTitle() {
         return title;
@@ -62,6 +59,7 @@ public class MeetingEntity {
     public Timestamp getStarttime(){
         return starttime;
     }
+
     public void setStarttime(Timestamp starttime){
         this.starttime = starttime;
     }
@@ -69,6 +67,7 @@ public class MeetingEntity {
     public Timestamp getEndtime(){
         return endtime;
     }
+
     public void setEndtime(Timestamp endtime){
         this.endtime = endtime;
     }
@@ -97,12 +96,9 @@ public class MeetingEntity {
         this.guests = guests;
     }
 
-    public MeetingEntity(){
-
-    }
+    public MeetingEntity(){}
 
     public MeetingEntity(MeetingDto dto){
-
         this.title = dto.getTitle();
         this.description = dto.getDescription();
         this.creator = dto.getCreator();
@@ -113,7 +109,6 @@ public class MeetingEntity {
     }
 
     public MeetingEntity( String title, String description, UserEntity creator, MeetingRoomEntity room, List<UserEntity> guests, Timestamp starttime, Timestamp endtime) {
-
         this.title = title;
         this.description = description;
         this.creator = creator;
@@ -122,12 +117,6 @@ public class MeetingEntity {
         this.starttime = starttime;
         this.endtime = endtime;
     }
-    /*    public boolean cheekers(Timestamp new_time){
-        if (starttime.compareTo(new_time) > 0 && endtime.compareTo(new_time) < 0){
-            return true;
-        }
-        return false;
-    }*/
 
 
     @Override
@@ -141,5 +130,4 @@ public class MeetingEntity {
                 ", endtime='" + endtime + '\'' +
                 '}';
     }
-
 }

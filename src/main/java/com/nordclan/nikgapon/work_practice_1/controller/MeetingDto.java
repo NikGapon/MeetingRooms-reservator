@@ -3,13 +3,8 @@ package com.nordclan.nikgapon.work_practice_1.controller;
 import com.nordclan.nikgapon.work_practice_1.model.MeetingEntity;
 import com.nordclan.nikgapon.work_practice_1.model.MeetingRoomEntity;
 import com.nordclan.nikgapon.work_practice_1.model.UserEntity;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.Size;
 
 import java.sql.Timestamp;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 public class MeetingDto {
@@ -23,8 +18,8 @@ public class MeetingDto {
     private Timestamp starttime;
     private Timestamp endtime;
 
-    public MeetingDto() {
-    }
+    public MeetingDto() {}
+
     public MeetingDto(MeetingEntity meetingEntity) {
         this.id = meetingEntity.getId();
         this.title = meetingEntity.getTitle();
@@ -94,7 +89,6 @@ public class MeetingDto {
     }
 
     public void setStarttime(Timestamp starttime) {
-
         this.starttime = starttime;
     }
 

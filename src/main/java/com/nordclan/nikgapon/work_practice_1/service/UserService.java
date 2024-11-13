@@ -1,6 +1,5 @@
 package com.nordclan.nikgapon.work_practice_1.service;
 
-import com.nordclan.nikgapon.work_practice_1.model.MeetingRoomEntity;
 import com.nordclan.nikgapon.work_practice_1.model.UserEntity;
 import com.nordclan.nikgapon.work_practice_1.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +27,8 @@ public class UserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException{
         final UserEntity userEntity = findByLogin(login);
-        if (userEntity == null) {
-            throw new UsernameNotFoundException(login);
-        }
+        if (userEntity == null) throw new UsernameNotFoundException(login);
+
         return new User(
                 userEntity.getLogin(), userEntity.getPassword(), Collections.singleton(userEntity.getRole()));
     }
@@ -56,6 +54,8 @@ public class UserService implements UserDetailsService {
         return user.orElseThrow(() -> new UserNotFoundException(id));
     }
 }
+
+
 class UserNotFoundException extends RuntimeException{
     public UserNotFoundException(Long id){
         super(String.format("USer with id [%s] ius not found", id ));

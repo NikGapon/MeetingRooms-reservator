@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -17,6 +15,7 @@ import java.util.Optional;
 
 @Service
 public class MeetingService {
+
     @Autowired
     private final MeetingRepository meetingRepository;
     public MeetingService(MeetingRepository meetingRepository) {
@@ -38,8 +37,8 @@ public class MeetingService {
     public MeetingEntity findMeeting(Long id){
         final Optional<MeetingEntity> meeting = meetingRepository.findById(id);
         return meeting.orElseThrow(() -> new MeetingNotFoundException(id));
-
     }
+
     @Transactional
     public void deleteMeeting(Long id){
         meetingRepository.deleteById(id);
@@ -50,6 +49,7 @@ public class MeetingService {
         final MeetingEntity meeting = new MeetingEntity(dto);
         return meetingRepository.save(meeting);
     }
+
     @Transactional
     public boolean isRoomOccupied(MeetingRoomEntity room, Timestamp startTime, Timestamp endTime, Long id) {
         List<MeetingEntity> existingMeetings = meetingRepository.findByRoomAndTimeRange(room, startTime, endTime, id);
@@ -68,7 +68,6 @@ public class MeetingService {
         meeting.setEndtime(dto.getEndtime());
         meeting.setGuests(dto.getGuests());
         return meetingRepository.save(meeting);
-
     }
 
     @Transactional
@@ -76,6 +75,7 @@ public class MeetingService {
         return meetingRepository.findAllMeetingsByGuestUserId(id);
     }
 }
+
 
 class MeetingNotFoundException extends RuntimeException{
     public MeetingNotFoundException(Long id){
