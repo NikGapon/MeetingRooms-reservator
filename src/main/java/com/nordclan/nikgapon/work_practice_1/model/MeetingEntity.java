@@ -1,6 +1,6 @@
 package com.nordclan.nikgapon.work_practice_1.model;
 
-import com.nordclan.nikgapon.work_practice_1.controller.MeetingDto;
+import com.nordclan.nikgapon.work_practice_1.dto.MeetingDto;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 

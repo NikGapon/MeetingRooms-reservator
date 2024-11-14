@@ -1,6 +1,6 @@
 package com.nordclan.nikgapon.work_practice_1.service;
 
-import com.nordclan.nikgapon.work_practice_1.controller.MeetingRoomDto;
+import com.nordclan.nikgapon.work_practice_1.dto.MeetingRoomDto;
 import com.nordclan.nikgapon.work_practice_1.model.MeetingRoomEntity;
 import com.nordclan.nikgapon.work_practice_1.repository.MeetingRoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;

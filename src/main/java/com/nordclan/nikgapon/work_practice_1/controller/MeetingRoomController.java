@@ -1,5 +1,6 @@
 package com.nordclan.nikgapon.work_practice_1.controller;
 
+import com.nordclan.nikgapon.work_practice_1.dto.MeetingRoomDto;
 import com.nordclan.nikgapon.work_practice_1.service.MeetingRoomService;
 import com.nordclan.nikgapon.work_practice_1.service.UserService;
 import org.springframework.stereotype.Controller;

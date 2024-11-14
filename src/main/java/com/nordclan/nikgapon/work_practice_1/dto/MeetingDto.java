@@ -1,4 +1,4 @@
-package com.nordclan.nikgapon.work_practice_1.controller;
+package com.nordclan.nikgapon.work_practice_1.dto;
 
 import com.nordclan.nikgapon.work_practice_1.model.MeetingEntity;
 import com.nordclan.nikgapon.work_practice_1.model.MeetingRoomEntity;

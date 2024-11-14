@@ -1,5 +1,6 @@
 package com.nordclan.nikgapon.work_practice_1.controller;
 
+import com.nordclan.nikgapon.work_practice_1.dto.MeetingDto;
 import com.nordclan.nikgapon.work_practice_1.service.MeetingRoomService;
 import com.nordclan.nikgapon.work_practice_1.service.MeetingService;
 import com.nordclan.nikgapon.work_practice_1.service.UserService;
