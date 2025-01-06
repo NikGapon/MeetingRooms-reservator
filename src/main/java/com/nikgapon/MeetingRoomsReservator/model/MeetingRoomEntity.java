@@ -5,29 +5,39 @@ import com.nikgapon.MeetingRoomsReservator.dto.MeetingRoomDto;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import lombok.*;
 
 import java.util.List;
 import java.util.Objects;
 
 @Entity
 @Table(name = "meetingroom")
+@NoArgsConstructor
+@EqualsAndHashCode
+@ToString
 public class MeetingRoomEntity {
     @Id
     @GeneratedValue
+    @Getter
     private Long id;
 
     @Column(nullable = false, unique = true, length = 64)
     @NotBlank
     @Size(min = 3, max = 64)
+    @Getter
+    @Setter
     private String name;
 
     @Size(min = 0, max = 516)
+    @Getter
+    @Setter
     private String description;
 
     @OneToMany(mappedBy = "room", cascade={CascadeType.ALL},  orphanRemoval = true)
+    @Getter
+    @Setter
     private List<MeetingEntity> meeting;
 
-    public MeetingRoomEntity(){}
 
     public MeetingRoomEntity(String name){
         this.name = name;
@@ -43,44 +53,4 @@ public class MeetingRoomEntity {
         this.description = dto.getDescription();
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public List<MeetingEntity> getMeeting() { return meeting; }
-
-    public void setMeeting(List<MeetingEntity> meeting) { this.meeting = meeting; }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        MeetingRoomEntity room = (MeetingRoomEntity) o;
-        return Objects.equals(id, room.id);
-    }
-
-    @Override
-    public String toString() {
-        return "MeetingRoomEntity{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                '}';
-    }
 }

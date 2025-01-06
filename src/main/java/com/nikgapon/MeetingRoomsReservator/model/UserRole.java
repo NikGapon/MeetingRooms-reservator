@@ -1,7 +1,9 @@
 package com.nikgapon.MeetingRoomsReservator.model;
 
+import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
 
+@ToString
 public enum UserRole implements GrantedAuthority {
     ADMIN,
     USER;
@@ -13,8 +15,4 @@ public enum UserRole implements GrantedAuthority {
         return PREFIX + this.name();
     }
 
-    public static final class AsString {
-        public static final String ADMIN = PREFIX + "ADMIN";
-        public static final String USER = PREFIX + "USER";
-    }
 }

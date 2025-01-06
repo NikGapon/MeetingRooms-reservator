@@ -3,34 +3,46 @@ package com.nikgapon.MeetingRoomsReservator.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.util.Objects;
 
 @Entity
 @Table(name = "users")
+@ToString
+@NoArgsConstructor
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Getter
     private Long id;
 
     @Column(nullable = false, unique = true, length = 64)
     @NotBlank
     @Size(min = 3, max = 64)
+    @Getter
+    @Setter
     private String login;
 
     @Column(nullable = false, length = 64)
     @NotBlank
     @Size(min = 6, max = 64)
+    @Getter
+    @Setter
     private String password;
 
+    @Getter
     private UserRole role;
 
     @Column(nullable = false)
     @NotBlank
     @Size(min = 5, max = 128)
+    @Getter
+    @Setter
     private String FIO;
-
-    public UserEntity() {}
 
     public UserEntity(String login, String password) {
         this(login, password, UserRole.USER);
@@ -42,36 +54,8 @@ public class UserEntity {
         this.role = role;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public  String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public UserRole getRole() {
-        return role;
-    }
-
-    public  String getFIO() {
-        return FIO;
-    }
-
-    public void setFIO(String FIO) {
-        this.FIO = FIO;
+    public void setRole(String role) {
+        this.role = UserRole.valueOf(role);
     }
 
     @Override
@@ -86,17 +70,5 @@ public class UserEntity {
     public int hashCode() {
         return Objects.hash(id, login);
     }
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", login='" + login + '\'' +
-                ", password='" + password + '\'' +
-                ", role='" + role + '\'' +
-                '}';
-    }
 
-    public void setRole(String role) {
-        this.role = UserRole.valueOf(role);
-    }
 }

@@ -3,100 +3,58 @@ package com.nikgapon.MeetingRoomsReservator.model;
 import com.nikgapon.MeetingRoomsReservator.dto.MeetingDto;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
+import lombok.*;
 
 import java.sql.Timestamp;
 import java.util.List;
 
 @Entity
 @Table(name = "meeting")
+@NoArgsConstructor
+@EqualsAndHashCode
+@ToString
 public class MeetingEntity {
     @Id
     @GeneratedValue
+    @Getter
     private Long id;
 
     @Column(nullable = false, length = 64)
+    @Getter
+    @Setter
     private String title;
 
     @Size(min = 0, max = 516)
+    @Getter
+    @Setter
     private String description;
 
     @ManyToOne
     @JoinColumn(name = "creator", nullable = false)
+    @Getter
+    @Setter
     private UserEntity creator;
 
     @ManyToOne
     @JoinColumn(name = "meetingroom_id")
+    @Getter
+    @Setter
     private MeetingRoomEntity room;
 
     @ManyToMany
     @JoinTable(name= "guest", joinColumns = { @JoinColumn(name = "meeting_id") },
             inverseJoinColumns = { @JoinColumn(name = "user_id")})
+    @Getter
+    @Setter
     private List<UserEntity> guests;
 
+    @Getter
+    @Setter
     private Timestamp starttime;
+
+    @Getter
+    @Setter
     private Timestamp endtime;
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Timestamp getStarttime(){
-        return starttime;
-    }
-
-    public void setStarttime(Timestamp starttime){
-        this.starttime = starttime;
-    }
-
-    public Timestamp getEndtime(){
-        return endtime;
-    }
-
-    public void setEndtime(Timestamp endtime){
-        this.endtime = endtime;
-    }
-
-    public MeetingRoomEntity getRoom() {
-        return room;
-    }
-
-    public UserEntity getCreator() {
-        return creator;
-    }
-
-    public void setCreator(UserEntity creator) {
-        this.creator = creator;
-    }
-
-    public void setRoom(MeetingRoomEntity room) {
-        this.room = room;
-    }
-
-    public List<UserEntity> getGuests() {
-        return guests;
-    }
-
-    public void setGuests(List<UserEntity> guests) {
-        this.guests = guests;
-    }
-
-    public MeetingEntity(){}
 
     public MeetingEntity(MeetingDto dto){
         this.title = dto.getTitle();
@@ -108,7 +66,8 @@ public class MeetingEntity {
         this.endtime = dto.getEndtime();
     }
 
-    public MeetingEntity( String title, String description, UserEntity creator, MeetingRoomEntity room, List<UserEntity> guests, Timestamp starttime, Timestamp endtime) {
+    public MeetingEntity(String title, String description, UserEntity creator, MeetingRoomEntity room,
+                         List<UserEntity> guests, Timestamp starttime, Timestamp endtime) {
         this.title = title;
         this.description = description;
         this.creator = creator;
@@ -119,15 +78,4 @@ public class MeetingEntity {
     }
 
 
-    @Override
-    public String toString() {
-        return "MeetingEntity{" +
-                "id=" + id +
-                ", creator='" + creator + '\'' +
-                ", room='" + room + '\'' +
-                ", guests='" + guests + '\'' +
-                ", starttime='" + starttime + '\'' +
-                ", endtime='" + endtime + '\'' +
-                '}';
-    }
 }
