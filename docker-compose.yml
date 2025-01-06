@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:latest
+    container_name: MeetingRoomsReservator
+    environment:
+      POSTGRES_DB: MeetingRoomsReservator
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+    ports:
+      - "5432:5432"
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: meeting-rooms-reservator-app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/MeetingRoomsReservator
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: admin
