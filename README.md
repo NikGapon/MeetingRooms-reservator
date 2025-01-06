@@ -1,7 +1,7 @@
-# Booking meeting rooms
+# MeetingRoomsReservator
 ## Backend Practice Assignment
-Made as part of a practice at NordClan
-
+Originally made as part of a university internship at Nord Clan in the fall of 2024. 
+It is currently being developed separately for my educational purposes.
 
 ## Project Overview
 This project involves developing a **Booking System for Meeting Rooms**. It serves as a practice assignment to apply backend development skills in a real-world scenario.
@@ -19,4 +19,5 @@ This project involves developing a **Booking System for Meeting Rooms**. It serv
 - **Thymeleaf**
 - **HTML, CSS, Bootstrap, Select2**
 - **JavaScript**
-
+- **Docker**
+- **Lombok**
